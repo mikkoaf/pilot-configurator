@@ -11,6 +11,7 @@ Add this plugin to the plugins folder of your WordPress installation
 # Features
 
 * Implements matchmaking features
+* Implements visualisation tools
 
 # For contributing
 ...
