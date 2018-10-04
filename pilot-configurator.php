@@ -35,6 +35,12 @@ define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
 
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-pilot-configurator.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-admin.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
+
+register_activation_hook (__FILE__, 'add_inno_user_roles');
+register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
+
+
 
 
 /**
@@ -42,6 +48,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-a
   * currently in admin, but Pilot_Configurator needs to be initialized anyway.
   */
 function pilot_configurator_init() {
+
   $pilot_configurator_client = new Inno_Oppiva\Pilot_Configurator_Client();
   $pilot_configurator_client->init();
 
