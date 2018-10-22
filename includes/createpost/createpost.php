@@ -1,28 +1,30 @@
 <?php
-function create_school_questions($results, $setnmbr) {
+function create_schoolquestions($results, $pagenbr) {
 	global $wpdb;
+
+	$author_id = 1;
+	$slug = 'school_question'.$pagenbr.'';
 	
 	$author_id = 1;
 	$qst_nmbr = 1;
-	//Start a buffer for the page-content
+
 	ob_start();
-	foreach ($results as $row){//Loop the individual questions
-	
-		$title = $row->setti;
+	echo '<form id="schoolQuestForm" class="questionForm">';
+	foreach ($results as $row){
+		$title = $row->theme;
 		$this_question = $row->question;
-		echo '<p>'.$this_question.'</p><form>1<input type="radio" name="q'.$qst_nmbr.'" value="qval'.$qst_nmbr.'"><input type="radio" name="q'.$qst_nmbr.'" value="qval'.$qst_nmbr.'"><input type="radio" name="q'.$qst_nmbr.'" value="qval'.$qst_nmbr.'"><input type="radio" name="q'.$qst_nmbr.'" value="qval'.$qst_nmbr.'"><input type="radio" name="q'.$qst_nmbr.'" value="qval'.$qst_nmbr.'">5</form>';
-		echo '<form><br><br>Lisätietoja (ei pakollinen)<input type="text" name="qcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"></form><br><hr><br>';
+		echo '<p>'.$this_question.'</p><input name="sqans'.$qst_nmbr.'" class="schoolSlider'.$qst_nmbr.'" type="text"/><br/>';
+		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
 		$qst_nmbr = $qst_nmbr + 1;
 	}
-	echo '<br><button type="button" onclick="last_page()">Edellinen</button><button type="button" onclick="next_page()">Seuraava</button>';
+	echo '<br><input type="button" value="Edellinen" height="60"></input>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Seuraava" height="60"></input></form>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
-	
-	$slug = 'schoolq'.$setnmbr.'';
-	
-	if( null == get_page_by_title( $title, 'OBJECT', 'page') ) {
-		$post_id = wp_insert_post(
+
+	if( null == get_page_by_path( $slug, 'OBJECT', 'page') ) {
+
+		wp_insert_post(
 			array(
 				'comment_status'	=>	'closed',
 				'ping_status'		=>	'closed',
@@ -35,7 +37,43 @@ function create_school_questions($results, $setnmbr) {
 			)
 		);
 	}
+}
+function create_companyquestions($results, $pagenbr) {
+	global $wpdb;
+
+	$author_id = 1;
+	$slug = 'company_question'.$pagenbr.'';
 	
+	$qst_nmbr = 1;
+	ob_start();
+	echo '<form id="companyQuestForm" class="questionForm">';
+	foreach ($results as $row){
+		$title = $row->theme;
+		$this_question = $row->question;
+		echo '<p>'.$this_question.'</p><input name="cqans'.$qst_nmbr.'" class="companyDS'.$qst_nmbr.'" type="text"/><br>';
+		echo '<input name="sqimprtance'.$qst_nmbr.'" class="companySS'.$qst_nmbr.'" type="text"/><br>';
+		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
+		$qst_nmbr = $qst_nmbr + 1;
+	}
+	echo '<br><input type="button" value="Edellinen" height="60"></input>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Seuraava" height="60"></input></form>';
+	$content = ob_get_contents(); 
+	ob_end_clean();
+	
+	if( null == get_page_by_path( $slug, 'OBJECT', 'page') ) {
+
+		wp_insert_post(
+			array(
+				'comment_status'	=>	'closed',
+				'ping_status'		=>	'closed',
+				'post_author'		=>	$author_id,
+				'post_name'			=>	$slug,
+				'post_title'		=>	$title,
+				'post_content'		=>	$content,
+				'post_status'		=>	'publish',
+				'post_type'			=>	'page'
+			)
+		);
+	}
 }
 
 ?>
