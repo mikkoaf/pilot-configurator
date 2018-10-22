@@ -61,9 +61,41 @@ require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 
 
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
+
 register_activation_hook (__FILE__, 'createquestinaires');
 register_activation_hook (__FILE__, 'create_splashes');
 register_deactivation_hook (__FILE__, 'remove_splashes');
+
+#MUISTA POISTAA!!
+add_action('wp_ajax_test_echo', 'test_echo');
+register_activation_hook (__FILE__, 'ajax_test_enqueue_scripts');
+add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts');
+
+
+function ajax_test_enqueue_scripts() {
+
+	
+	wp_enqueue_style(' bootstrap_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap.min.css', __FILE__ ));
+	wp_enqueue_style(' sliders_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap-slider.css', __FILE__ ));
+	wp_enqueue_script( 'sliders_main', plugins_url( 'includes/javascript/bootstrap-slider/bootstrap-slider.js', __FILE__ ), array('jquery'));
+	wp_localize_script( 'slidersmain', 'mainsliders', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+	wp_enqueue_script( 'sliders', plugins_url( 'includes/javascript/sliders.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_localize_script( 'slidersown', 'ownmainsliders', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+		
+	wp_enqueue_script( 'test', plugins_url( 'includes/javascript/test.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_localize_script( 'test', 'testname', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+	
+}
+
+
 
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
