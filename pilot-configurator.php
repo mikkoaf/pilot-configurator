@@ -57,6 +57,12 @@ function inno_oppiva_init() {
   $inno_oppiva_login->init();
 }
 
+require (dirname(__FILE__) . '/includes/questionaire-creation.php');
+require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
+
+
+register_activation_hook (__FILE__, 'createquestinaires');
+register_activation_hook (__FILE__, 'create_splashes');
 
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
