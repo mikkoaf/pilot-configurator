@@ -43,10 +43,11 @@ function jal_install() {
 		school_answer_id INT(3) NOT NULL,
 		user_id INT(3) NOT NULL,
 		question_id INT(3) NOT NULL,
-		answer INT(1),
+		answer_val INT(1),
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
+		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
 		PRIMARY KEY (school_answer_id)
 		)$charset_collate;";
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
