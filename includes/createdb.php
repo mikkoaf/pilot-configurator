@@ -28,7 +28,7 @@ function jal_install() {
 		PRIMARY KEY (question_id)
 		);
 		CREATE TABLE $table_name3(
-		company_id INT(3),
+		company_answer_id INT(3),
 		user_id int(3) NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1),
@@ -37,17 +37,17 @@ function jal_install() {
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
-		PRIMARY KEY (question_id)
+		PRIMARY KEY (company_answer_id)
 		);
 		CREATE TABLE $table_name4(
-		school_id INT(3) NOT NULL,
+		school_answer_id INT(3) NOT NULL,
 		user_id INT(3) NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer INT(1),
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
-		PRIMARY KEY (question_id)
+		PRIMARY KEY (school_answer_id)
 		)$charset_collate;";
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
@@ -86,11 +86,14 @@ function jal_install_data() {
 			'email' => $email1,
 		) 
 	);
-	$table_name2 = $wpdb->prefix . 'Questions';
+	
 	
 	$settt = 'Yksityisia';
-	$questii = 'Mika maa, mika päiva?';
+	$questii = 'Mika maa, mika paiva?';
 	$dunno = 'Teema?';
+
+	$table_name2 = $wpdb->prefix . 'Questions';
+
 	$wpdb->insert( 
 		$table_name2, 
 		array( 
