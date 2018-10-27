@@ -21,7 +21,7 @@ function jal_install() {
 		);
 		CREATE TABLE $table_name2(
 		question_id INT(3) AUTO_INCREMENT,
-		setti VARCHAR(20S) NOT NULL,
+		setti VARCHAR(20) NOT NULL,
 		question VARCHAR(30) NOT NULL,
 		theme VARCHAR(300),
 		comment VARCHAR(300),
