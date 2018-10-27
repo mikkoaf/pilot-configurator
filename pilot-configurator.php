@@ -41,6 +41,11 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
 
+require_once (dirname(__FILE__) . '/includes/createdb.php');
+require_once (dirname(__FILE__) . '/includes/destroydb.php');
+
+register_activation_hook (__FILE__, 'jal_install');
+register_uninstall_hook( __FILE__, 'jal_uninstall' );
 
 /**
   * Inno-Oppiva platform login system initialization commands
