@@ -26,11 +26,11 @@ define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
   */
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-pilot-configurator.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-admin.php';
-require_once (dirname(__FILE__) . '/includes/createdatabase/createdbtest.php');
-require_once (dirname(__FILE__) . '/includes/questionaire-creation.php');
+require_once (dirname(__FILE__) . '/includes/projektia/createdb.php');
+
 register_activation_hook (__FILE__, 'jal_install');
 register_activation_hook (__FILE__, 'jal_install_data');
-register_activation_hook (__FILE__, 'createquestinaires');
+
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
   * currently in admin, but Pilot_Configurator needs to be initialized anyway.
