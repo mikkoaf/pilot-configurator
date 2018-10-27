@@ -99,16 +99,9 @@ function jal_install_data() {
 		array( 
 			'setti' => $settt,
 			'question' => $questii,
-			'theme' => $dunno
+			'theme' => $dunno,
 		)
 	);
-	$wpdb->insert( 
-		'wp_Questions', 
-		array( 
-			'setti' => 'Yksityisia',
-			'question' => 'Mis on mailman punaisimmat?',
-			'theme' => 'Teema?'
-		)
-	);
+	
 }
 ?>
