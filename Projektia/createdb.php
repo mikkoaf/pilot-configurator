@@ -70,12 +70,14 @@ function jal_install_data() {
 			'email' => $email,
 		) 
 	);
-    $table_name2 = $wpdb->prefix . 'Questions';
+    
 
     $name1 = 'Kauppisen maansiirto Oy';
 	$status1 = 'Yritys';
 	$email1 = 'kauppisen.maansiirto@tyoukko.com';
-    
+	
+	$table_name = $wpdb->prefix . 'Users';
+
     $wpdb->insert( 
 		$table_name, 
 		array( 
