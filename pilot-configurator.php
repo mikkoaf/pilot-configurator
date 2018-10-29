@@ -35,12 +35,21 @@ define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
 
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-pilot-configurator.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-admin.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
 
 
+/**
+  * Inno-Oppiva platform login system initialization commands
+  *
+  */
+function inno_oppiva_init() {
+  $inno_oppiva_login = new Inno_Oppiva\Inno_Oppiva_Login();
+  $inno_oppiva_login->init();
+}
 
 
 /**
@@ -57,4 +66,5 @@ function pilot_configurator_init() {
     $pilot_configurator_admin->init();
   }
 }
+inno_oppiva_init();
 pilot_configurator_init();
