@@ -31,8 +31,8 @@ function jal_install() {
 		company_answer_id INT(3),
 		user_id int(3) NOT NULL,
 		question_id INT(3) NOT NULL,
-		answer_max INT(1),
-		answer_min INT(1),
+		answer_max INT(1) NOT NULL,
+		answer_min INT(1) NOT NULL,
 		answer_val INT(1),
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
@@ -43,7 +43,7 @@ function jal_install() {
 		school_answer_id INT(3) NOT NULL,
 		user_id INT(3) NOT NULL,
 		question_id INT(3) NOT NULL,
-		answer_val INT(1),
+		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
@@ -101,6 +101,43 @@ function jal_install_data() {
 			'setti' => $settt,
 			'question' => $questii,
 			'theme' => $dunno,
+		)
+	);
+
+	$cid = 1;
+	$uid = 2;
+	$qid = 1;
+	$ans_max = 5;
+	$ans_min = 3;
+
+	$table_name3 = $wpdb->prefix . 'Company_answer';
+
+	$wpdb->insert( 
+		$table_name3, 
+		array( 
+			'compnany_answer_id' => $cid,
+			'user_id' => $uid,
+			'question_id' => $qid,
+			'answer_max' => $ans_max,
+			'answer_min' => $ans_mind,
+		)
+	);
+
+
+	$sid = 1;
+	$uidd = 2;
+	$qidd = 1;
+	$ans_val = 4;
+
+	$table_name4 = $wpdb->prefix . 'School_answer';
+
+	$wpdb->insert( 
+		$table_name4, 
+		array( 
+			'school_answer_id' => $sid,
+			'user_id' => $uidd,
+			'question_id' => $qidd,
+			'answer_val' => $ans_val,
 		)
 	);
 	
