@@ -43,6 +43,7 @@ function jal_install() {
 		school_answer_id INT(3) NOT NULL,
 		user_id INT(3) NOT NULL,
 		question_id INT(3) NOT NULL,
+		company_answer_id INT(3) NOT NULL,
 		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
 		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
@@ -127,6 +128,7 @@ function jal_install_data() {
 	$sid = 1;
 	$uidd = 2;
 	$qidd = 1;
+	$cidd = 1;
 	$ans_val = 4;
 
 	$table_name4 = $wpdb->prefix . 'School_answer';
@@ -137,6 +139,7 @@ function jal_install_data() {
 			'school_answer_id' => $sid,
 			'user_id' => $uidd,
 			'question_id' => $qidd,
+			'company_answer_id' => $cidd,
 			'answer_val' => $ans_val,
 		)
 	);
