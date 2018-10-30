@@ -116,7 +116,7 @@ function jal_install_data() {
 	$wpdb->insert( 
 		$table_name3, 
 		array( 
-			'compnany_answer_id' => $cid,
+			'company_answer_id' => $cid,
 			'user_id' => $uid,
 			'question_id' => $qid,
 			'answer_max' => $ans_max,
