@@ -120,7 +120,7 @@ function jal_install_data() {
 			'user_id' => $uid,
 			'question_id' => $qid,
 			'answer_max' => $ans_max,
-			'answer_min' => $ans_mind,
+			'answer_min' => $ans_min,
 		)
 	);
 
