@@ -1,8 +1,9 @@
 <?php
 function jal_install() {
 	global $wpdb;
-	$table_name = $wpdb->prefix . 'Users';
-		
+	
+	$table_name1 = $wpdb->prefix . 'wp_users';
+
 	$table_name2 = $wpdb->prefix . 'Questions';
 	
 	$table_name3 = $wpdb->prefix . 'Company_answer';
@@ -12,14 +13,7 @@ function jal_install() {
 	$charset_collate = $wpdb->get_charset_collate();
 	
 	
-	$sql = "CREATE TABLE $table_name(
-		user_id INT(3) AUTO_INCREMENT,
-		name VARCHAR(30) NOT NULL,
-		status VARCHAR(30) NOT NULL,
-		email VARCHAR(50),
-		PRIMARY KEY (user_id)
-		);
-		CREATE TABLE $table_name2(
+	$sql = "CREATE TABLE $table_name2(
 		question_id INT(3) AUTO_INCREMENT,
 		setti VARCHAR(20) NOT NULL,
 		question VARCHAR(30) NOT NULL,
@@ -29,24 +23,24 @@ function jal_install() {
 		);
 		CREATE TABLE $table_name3(
 		company_answer_id INT(3),
-		user_id int(3) NOT NULL,
+		user_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
 		answer_val INT(1),
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
+		FOREIGN KEY (user_id) REFERENCES $table_name (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
 		);
 		CREATE TABLE $table_name4(
 		school_answer_id INT(3) NOT NULL,
-		user_id INT(3) NOT NULL,
+		user_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		company_answer_id INT(3) NOT NULL,
 		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name (user_id),
+		FOREIGN KEY (user_id) REFERENCES $table_name (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
 		PRIMARY KEY (school_answer_id)
@@ -57,35 +51,47 @@ function jal_install() {
 function jal_install_data() {
 	global $wpdb;
 	
-	$name = 'Herwoodin koulu';
-	$status = 'Koulu';
-	$email = 'Herwoodinkoulu@herwoord.com';
+	$ulogin = 'Herwoodin koulu'
+	$upass = 'herwood123'
+	$nicename = 'Herwoodin koulu'
+	$umail = 'herwoodkoulu@mymail.com'
+	$status = 1;
+	$displayname = 'Herwoodin koulu'
 	
 	
-	$table_name = $wpdb->prefix . 'Users';
+	$table_name = $wpdb->prefix . 'wp_users';
 	
 	$wpdb->insert( 
 		$table_name, 
 		array( 
-			'name' => $name, 
-			'status' => $status,
-			'email' => $email,
+			'user_login' => $ulogin, 
+			'user_pass' => $upass,
+			'user_nicename' => $nicename,
+			'user_email' => $umail,
+			'user_status' => $status,
+			'display_name' => $displayname,
 		) 
 	);
     
 
-    $name1 = 'Kauppisen maansiirto Oy';
-	$status1 = 'Yritys';
-	$email1 = 'kauppisen.maansiirto@tyoukko.com';
+    $ulogin1 = 'Teknologia Oy'
+	$upass1 = 'teknologia123'
+	$nicename1 = 'Teknologia Oy'
+	$umail1 = 'teknologiaoy@teknologia.com'
+	$status1 = 2;
+	$displayname1 = 'Teknologia Oy'
 	
 	$table_name = $wpdb->prefix . 'Users';
 
     $wpdb->insert( 
 		$table_name, 
 		array( 
-			'name' => $name1, 
-			'status' => $status1,
-			'email' => $email1,
+			'user_login' => $ulogin1, 
+			'user_pass' => $upass1,
+			'user_nicename' => $nicename1,
+			'user_email' => $umail1,
+			'user_status' => $status1,
+			'display_name' => $displayname1,
 		) 
 	);
 	
