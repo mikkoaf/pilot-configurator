@@ -2,7 +2,7 @@
 function jal_install() {
 	global $wpdb;
 	
-	$table_name1 = $wpdb->prefix . 'users';
+	$table_name1 = $wpdb->prefix . 'wp_users';
 
 	$table_name2 = $wpdb->prefix . 'Questions';
 	
@@ -29,7 +29,7 @@ function jal_install() {
 		answer_min INT(1) NOT NULL,
 		answer_val INT(1),
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name (ID),
+		FOREIGN KEY (user_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
 		);
@@ -40,7 +40,7 @@ function jal_install() {
 		company_answer_id INT(3) NOT NULL,
 		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name (ID),
+		FOREIGN KEY (user_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
 		PRIMARY KEY (school_answer_id)
