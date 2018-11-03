@@ -23,24 +23,24 @@ function jal_install() {
 		);
 		CREATE TABLE $table_name3(
 		company_answer_id INT(3),
-		user_id BIGINT(20) UNSIGNED NOT NULL,
+		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
 		answer_val INT(1),
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name1 (ID),
+		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
 		);
 		CREATE TABLE $table_name4(
 		school_answer_id INT(3) NOT NULL,
-		user_id BIGINT(20) UNSIGNED NOT NULL,
+		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		company_answer_id INT(3) NOT NULL,
 		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
-		FOREIGN KEY (user_id) REFERENCES $table_name1 (ID),
+		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
 		PRIMARY KEY (school_answer_id)
@@ -59,10 +59,10 @@ function jal_install_data() {
 	$displayname = 'Herwoodin koulu';
 	
 	
-	$table_name = $wpdb->prefix . 'wp_users';
+	$table_name1 = $wpdb->prefix . 'wp_users';
 	
 	$wpdb->insert( 
-		$table_name, 
+		$table_name1, 
 		array( 
 			'user_login' => $ulogin, 
 			'user_pass' => $upass,
@@ -81,10 +81,10 @@ function jal_install_data() {
 	$status1 = 2;
 	$displayname1 = 'Teknologia Oy';
 	
-	$table_name = $wpdb->prefix . 'Users';
+	$table_name1 = $wpdb->prefix . 'wp_users';
 
     $wpdb->insert( 
-		$table_name, 
+		$table_name1, 
 		array( 
 			'user_login' => $ulogin1, 
 			'user_pass' => $upass1,
@@ -123,7 +123,7 @@ function jal_install_data() {
 		$table_name3, 
 		array( 
 			'company_answer_id' => $cid,
-			'user_id' => $uid,
+			'wpuser_id' => $uid,
 			'question_id' => $qid,
 			'answer_max' => $ans_max,
 			'answer_min' => $ans_min,
@@ -143,7 +143,7 @@ function jal_install_data() {
 		$table_name4, 
 		array( 
 			'school_answer_id' => $sid,
-			'user_id' => $uidd,
+			'wpuser_id' => $uidd,
 			'question_id' => $qidd,
 			'company_answer_id' => $cidd,
 			'answer_val' => $ans_val,
