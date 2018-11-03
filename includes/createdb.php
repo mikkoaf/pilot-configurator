@@ -112,7 +112,7 @@ function jal_install_data() {
 	);
 
 	$cid = 1;
-	$uid = 2;
+	$uid = 7;
 	$qid = 1;
 	$ans_max = 5;
 	$ans_min = 3;
@@ -132,7 +132,7 @@ function jal_install_data() {
 
 
 	$sid = 1;
-	$uidd = 2;
+	$uidd = 6;
 	$qidd = 1;
 	$cidd = 1;
 	$ans_val = 4;
