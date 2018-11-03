@@ -2,7 +2,7 @@
 function jal_install() {
 	global $wpdb;
 	
-	$table_name1 = $wpdb->prefix . 'wp_users';
+	$table_name1 = $wpdb->prefix . 'users';
 
 	$table_name2 = $wpdb->prefix . 'Questions';
 	
