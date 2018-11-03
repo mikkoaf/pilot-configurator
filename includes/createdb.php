@@ -2,7 +2,7 @@
 function jal_install() {
 	global $wpdb;
 	
-	$table_name1 = $wpdb->prefix . 'wp_users';
+	$table_name1 = $wpdb->prefix . 'users';
 
 	$table_name2 = $wpdb->prefix . 'Questions';
 	
@@ -59,7 +59,7 @@ function jal_install_data() {
 	$displayname = 'Herwoodin koulu';
 	
 	
-	$table_name1 = $wpdb->prefix . 'wp_users';
+	$table_name1 = $wpdb->prefix . 'users';
 	
 	$wpdb->insert( 
 		$table_name1, 
@@ -81,7 +81,7 @@ function jal_install_data() {
 	$status1 = 2;
 	$displayname1 = 'Teknologia Oy';
 	
-	$table_name1 = $wpdb->prefix . 'wp_users';
+	$table_name1 = $wpdb->prefix . 'users';
 
     $wpdb->insert( 
 		$table_name1, 
