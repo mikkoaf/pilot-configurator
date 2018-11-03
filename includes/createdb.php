@@ -51,12 +51,12 @@ function jal_install() {
 function jal_install_data() {
 	global $wpdb;
 	
-	$ulogin = 'Herwoodin koulu'
-	$upass = 'herwood123'
-	$nicename = 'Herwoodin koulu'
-	$umail = 'herwoodkoulu@mymail.com'
+	$ulogin = 'Herwoodin koulu';
+	$upass = 'herwood123';
+	$nicename = 'Herwoodin koulu';
+	$umail = 'herwoodkoulu@mymail.com';
 	$status = 1;
-	$displayname = 'Herwoodin koulu'
+	$displayname = 'Herwoodin koulu';
 	
 	
 	$table_name = $wpdb->prefix . 'wp_users';
@@ -74,12 +74,12 @@ function jal_install_data() {
 	);
     
 
-    $ulogin1 = 'Teknologia Oy'
-	$upass1 = 'teknologia123'
-	$nicename1 = 'Teknologia Oy'
-	$umail1 = 'teknologiaoy@teknologia.com'
+    $ulogin1 = 'Teknologia Oy';
+	$upass1 = 'teknologia123';
+	$nicename1 = 'Teknologia Oy';
+	$umail1 = 'teknologiaoy@teknologia.com';
 	$status1 = 2;
-	$displayname1 = 'Teknologia Oy'
+	$displayname1 = 'Teknologia Oy';
 	
 	$table_name = $wpdb->prefix . 'Users';
 
