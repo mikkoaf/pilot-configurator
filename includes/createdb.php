@@ -13,7 +13,7 @@ function jal_install() {
 	$charset_collate = $wpdb->get_charset_collate();
 	
 	
-	$sql = "CREATE TABLE [IF NOT EXISTS] $table_name2(
+	$sql = "CREATE TABLE $table_name2(
 		question_id INT(3) AUTO_INCREMENT,
 		setti VARCHAR(20) NOT NULL,
 		question VARCHAR(30) NOT NULL,
@@ -21,7 +21,7 @@ function jal_install() {
 		comment VARCHAR(300),
 		PRIMARY KEY (question_id)
 		);
-		CREATE TABLE [IF NOT EXISTS] $table_name3(
+		CREATE TABLE $table_name3(
 		company_answer_id INT(3),
 		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
@@ -33,7 +33,7 @@ function jal_install() {
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
 		);
-		CREATE TABLE [IF NOT EXISTS] $table_name4(
+		CREATE TABLE $table_name4(
 		school_answer_id INT(3) NOT NULL,
 		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
