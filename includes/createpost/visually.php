@@ -7,7 +7,6 @@ $var3 = 4;
 $var2 = 5;
 $counter = 0;
 
-while($counter < 3) {
 echo '<div style="width: 200px; height: 200px;"><canvas id="chart" width="50px" height="50px"></canvas></div>
 <div style="width: 400px; height: 400px;"><canvas id="myChart2" width="50px" height="50px"></canvas></div>
 <script>
@@ -93,11 +92,4 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>';
-$var1 = $var1 + 1;
-$var5 = $var5 + 1;
-$var4 = $var4 + 1;
-$var3 = $var3 + 1;
-$var2 = $var2 + 1;
-$counter = $counter + 1;
-}
 ?>
