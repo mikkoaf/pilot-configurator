@@ -29,7 +29,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-a
 require_once (dirname(__FILE__) . '/includes/createdb.php');
 
 register_activation_hook (__FILE__, 'jal_install');
-register_activation_hook (__FILE__, 'jal_install_data');
+
 
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
