@@ -23,8 +23,8 @@ function jal_install() {
 		)$charset_collate;";
 
 	$sql1 = "CREATE TABLE IF NOT EXISTS $table_name3(
-		company_answer_id INT(3),
-		wpuser_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+		company_answer_id INT(3) NOT NULL AUTO_INCREMENT,
+		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
