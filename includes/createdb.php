@@ -50,5 +50,7 @@ function jal_install() {
 		
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
+	dbDelta( $sql1 );
+	dbDelta( $sql2 );
 }
 ?>
