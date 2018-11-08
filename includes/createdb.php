@@ -20,8 +20,9 @@ function jal_install() {
 		theme VARCHAR(300),
 		comment VARCHAR(300),
 		PRIMARY KEY (question_id)
-		);
-		CREATE TABLE IF NOT EXISTS $table_name3(
+		)$charset_collate;";
+
+	$sql1 = "CREATE TABLE IF NOT EXISTS $table_name3(
 		company_answer_id INT(3),
 		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
@@ -32,8 +33,9 @@ function jal_install() {
 		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
-		);
-		CREATE TABLE IF NOT EXISTS $table_name4(
+		)$charset_collate;";
+
+	$sql2 =	"CREATE TABLE IF NOT EXISTS $table_name4(
 		school_answer_id INT(3) NOT NULL,
 		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
@@ -45,6 +47,7 @@ function jal_install() {
 		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
 		PRIMARY KEY (school_answer_id)
 		)$charset_collate;";
+		
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
 }
