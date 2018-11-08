@@ -14,7 +14,7 @@ function jal_install() {
 	
 	
 	$sql = "CREATE TABLE IF NOT EXISTS $table_name2(
-		question_id INT(3) NOT NULL AUTO_INCREMENT ,
+		question_id INT(3) NOT NULL AUTO_INCREMENT,
 		setti VARCHAR(20) NOT NULL,
 		question VARCHAR(30) NOT NULL,
 		theme VARCHAR(300),
@@ -23,8 +23,8 @@ function jal_install() {
 		)$charset_collate;";
 
 	$sql1 = "CREATE TABLE IF NOT EXISTS $table_name3(
-		company_answer_id INT(3),
-		wpuser_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+		company_answer_id INT(3) NOT NULL AUTO_INCREMENT,
+		wpuser_id BIGINT(20) UNSIGNED,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
