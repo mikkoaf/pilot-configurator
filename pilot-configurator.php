@@ -26,6 +26,7 @@ define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
   */
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-pilot-configurator.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-admin.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require_once (dirname(__FILE__) . '/includes/createdb.php');
 require_once (dirname(__FILE__) . '/includes/destroydb.php');
 
