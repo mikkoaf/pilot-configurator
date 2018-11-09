@@ -8,16 +8,14 @@ function jal_uninstall() {
 	
 	$table_name4 = $wpdb->prefix . 'School_answer';
 
-	$sql1 = "DROP TABLE IF EXISTS $table_name2
-		;";
-	$sql2 =	"DROP TABLE IF EXISTS $table_name3
-		;";
-	$sql3 =	"DROP TABLE IF EXISTS $table_name4
-		;";
+	$sql1 = "DROP TABLE IF EXISTS $table_name2;";
+	$sql2 =	"DROP TABLE IF EXISTS $table_name3;";
+	$sql3 =	"DROP TABLE IF EXISTS $table_name4;";
+	
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql1 );
-	dbDelta( $sql2 );
-	dbDelta( $sql3 );
+	$wpdb->query($sql2);
+	$wpdb->query($sql3);
+	$wpdb->query($sql4);
 
 }
 ?>
