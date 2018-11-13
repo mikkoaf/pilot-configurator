@@ -16,9 +16,8 @@ function jal_install() {
 	$sql = "CREATE TABLE IF NOT EXISTS $table_name2(
 		question_id INT(3) NOT NULL AUTO_INCREMENT,
 		question_set INT(1) NOT NULL,
-		question VARCHAR(30) NOT NULL,
-		theme VARCHAR(300),
-		comment VARCHAR(300),
+		question VARCHAR(100) NOT NULL,
+		theme VARCHAR(50),
 		PRIMARY KEY (question_id)
 		)$charset_collate;";
 
@@ -29,7 +28,6 @@ function jal_install() {
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
 		answer_priority INT(1),
-		comment VARCHAR(300),
 		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
