@@ -14,7 +14,7 @@ Add this plugin to the plugins folder of your WordPress installation
 * Implements visualisation tools
 
 # For contributing
-...
+Reporting commit count to [MMT](https://http://metricsmonitoring.sis.uta.fi/) with `git rev-list --all --count`
 
 # Changelog
 

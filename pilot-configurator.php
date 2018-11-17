@@ -26,12 +26,33 @@ define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
   */
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-pilot-configurator.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-admin.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
+require_once (dirname(__FILE__) . '/includes/createdb.php');
+require_once (dirname(__FILE__) . '/includes/destroydb.php');
+
+<<<<<<< HEAD
+register_activation_hook (__FILE__, 'jal_install');
+register_uninstall_hook( __FILE__, 'jal_uninstall' );
+=======
+register_activation_hook (__FILE__, 'add_inno_user_roles');
+register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
+
 require_once (dirname(__FILE__) . '/includes/createdb.php');
 require_once (dirname(__FILE__) . '/includes/destroydb.php');
 
 register_activation_hook (__FILE__, 'jal_install');
 register_uninstall_hook( __FILE__, 'jal_uninstall' );
+
+/**
+  * Inno-Oppiva platform login system initialization commands
+  *
+  */
+function inno_oppiva_init() {
+  $inno_oppiva_login = new Inno_Oppiva\Inno_Oppiva_Login();
+  $inno_oppiva_login->init();
+}
+>>>>>>> 7c6673bd4726196245bc3162e32dd4a972f60565
 
 
 /**
@@ -46,4 +67,9 @@ function pilot_configurator_init() {
     $pilot_configurator_admin->init();
   }
 }
+<<<<<<< HEAD
 pilot_configurator_init();
+=======
+inno_oppiva_init();
+pilot_configurator_init();
+>>>>>>> 7c6673bd4726196245bc3162e32dd4a972f60565

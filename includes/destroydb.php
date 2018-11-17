@@ -13,9 +13,9 @@ function jal_uninstall() {
 	$sql3 =	"DROP TABLE IF EXISTS $table_name4;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	$wpdb->query($sql1);
-	$wpdb->query($sql2);
 	$wpdb->query($sql3);
+	$wpdb->query($sql2);
+	$wpdb->query($sql1);
 
 }
 ?>

@@ -53,4 +53,8 @@ function jal_install() {
 	dbDelta( $sql1 );
 	dbDelta( $sql2 );
 }
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 7c6673bd4726196245bc3162e32dd4a972f60565
