@@ -50,5 +50,37 @@ function jal_install() {
 	dbDelta( $sql );
 	dbDelta( $sql1 );
 	dbDelta( $sql2 );
+
+	// Test if questions already exist in (old version of) Questions table
+	$test = $wpdb->get_results("SELECT * FROM $table_name2");
+	if(count($test) == 0){
+		$wpdb->query(
+		  "INSERT INTO wp_Questions VALUES
+		  (NULL, 1, 'Opettajilla on käsitys opetusta tukevista sovelluksista ja teknologioista', 'Ihmiset ja organisaatio'),
+		  (NULL, 1, 'Opettajat toimivat käyttäjinä ja sisällöntuottajina', 'Ihmiset ja organisaatio'),
+		  (NULL, 1, 'Opettajat saavat tukea sovellusten käyttöön', 'Ihmiset ja organisaatio'),
+		  (NULL, 1, 'Opetusteknologian rooli on ymmärretty', 'Ihmiset ja organisaatio'),
+		  (NULL, 1, 'Opettajat haluavat kokeilla uusia työkaluja', 'Ihmiset ja organisaatio'),
+		  (NULL, 2, 'Koulussa on riittävät laitteet käytössä', 'Teknologia'),
+		  (NULL, 2, 'Sovellus sopii hyvin IT-intraan', 'Teknologia'),
+		  (NULL, 2, 'Opettajat voivat ottaa käyttöön sovelluksia', 'Teknologia'),
+		  (NULL, 2, 'Opettajat ovat mukana sähköisten opetusympäristöjen kehittämisessä', 'Teknologia'),
+		  (NULL, 2, 'Koulussa käytetään oppilaiden omia laitteita', 'Teknologia'),
+		  (NULL, 3, 'Koulun johto tukee sähköisen opetusympäristön kehittämistä', 'Johtaminen ja arviointi'),
+		  (NULL, 3, 'Tietoturvaan liittyvät ongelmat on koulun arvion mukaan ratkaistu', 'Johtaminen ja arviointi'),
+		  (NULL, 3, 'Opettajilla on resursseja kehittää sähköistä opetusympäristöä', 'Johtaminen ja arviointi'),
+		  (NULL, 4, 'Implementointi sopii opetusssuunnitelmaan', 'Prosessit'),
+		  (NULL, 4, 'Opettajien ja oppilaiden osaamistarpeet on tunnistettu', 'Prosessit'),
+		  (NULL, 4, 'Oppilaat voivat käyttää sovellusta', 'Prosessit'),
+		  (NULL, 4, 'Implementointi tuo lisäarvoa opetukseen', 'Prosessit'),
+		  (NULL, 4, 'Implementointi tukee oppilaiden kehittymisen arviointia', 'Prosessit'),
+		  (NULL, 5, 'Koululla on kehittämisstrategia', 'Strategia'),
+		  (NULL, 5, 'Kehittämisen tavoitteet on kommunikoitu', 'Strategia'),
+		  (NULL, 5, 'Kehittämisstrategia on linjassa opetussuunnitelman kanssa', 'Strategia'),
+		  (NULL, 5, 'Kehittämisstrategian toteuttamisella on koulun johdon tuki', 'Strategia'),
+		  (NULL, 5, 'Koululla on toimintasuunnitelma sähköisen opetusympäristön kehittämiseen', 'Strategia')
+		  "
+		);
+	}
 }
 ?>
