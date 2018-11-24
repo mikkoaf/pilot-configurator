@@ -18,8 +18,9 @@ if ( ! class_exists( 'Pilot_Configurator_Admin' ) ) {
     public function init() {
       //do initialization tasks ie. add_actions
 
-      // if no inno_oppiva_secret exist, create here -- move this elsewhere
+      // create plugin settings if they don't exist
       if(!get_option('inno_oppiva_secret')) add_option('inno_oppiva_secret', 'no-secret-set');
+      if(!get_option('inno_oppiva_priorities')) add_option('inno_oppiva_priorities', array(1 => 2, 5, 10 ));
 
       add_action('admin_init', 'pilot_admin_page_settings_init');
     }
