@@ -30,9 +30,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require_once (dirname(__FILE__) . '/includes/createdb.php');
 require_once (dirname(__FILE__) . '/includes/destroydb.php');
-require_once (dirname(__FILE__) . '/twentyseventeen-child/functions.php');
 
-register_activation_hook (__FILE__, 'theme_enqueue_styles');
 register_activation_hook (__FILE__, 'jal_install');
 register_uninstall_hook( __FILE__, 'jal_uninstall' );
 
