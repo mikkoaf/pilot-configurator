@@ -22,13 +22,13 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
     }
 
     public function inno_oppiva_cookie_set( $user_login, $user ) {
-      // if the user is a company, set the cookie
-      if ( user_can( $user, 'company' ) ) {
-        $super_secret  = get_option("inno_oppiva_secret");
-        $some_user_information = $user->user_email;
-        $value = hash("sha256", $some_user_information . $super_secret);
-        setcookie( 'inno-oppiva-login-cookie', $value, time() + 3600, '/');
-        setcookie( 'inno-oppiva-login-cookie-unhashed', $some_user_information . $super_secret, time() + 3600, '/');
+      // set cookie for relevant users
+      if ( user_can( $user, 'company' ) || user_can( $user, 'school') || user_can( $user, 'administrator') ) {
+        $salt  = get_option('inno_oppiva_secret');
+        $some_user_information = $user->user_login . '.' . $user->roles[0];
+        $some_user_information_hash = hash("sha256", $some_user_information . '.' . $salt);
+        setcookie( 'inno-oppiva-login-cookie', $some_user_information_hash, time() + 3600, '/');
+        setcookie( 'inno-oppiva-login-cookie-unhashed', $some_user_information . '.' . $salt, time() + 3600, '/');
       }
 
     }
