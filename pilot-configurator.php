@@ -70,16 +70,11 @@ register_activation_hook (__FILE__, 'create_splashes');
 #MUISTA POISTAA!!
 add_action('wp_ajax_test_echo', 'test_echo');
 register_activation_hook (__FILE__, 'ajax_test_enqueue_scripts');
-add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts');
 
 
 function ajax_test_enqueue_scripts() {
-	
-	wp_enqueue_script( 'test', plugins_url( 'includes/javascript/test.js', __FILE__ ), array('jquery'), '1.0', true );
-	wp_localize_script( 'test', 'testname', array(
-		'ajax_url' => admin_url( 'admin-ajax.php' )
-	));
-	
+
 	
 	wp_enqueue_style(' bootstrap_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap.min.css', __FILE__ ));
 	wp_enqueue_style(' sliders_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap-slider.css', __FILE__ ));
@@ -91,6 +86,12 @@ function ajax_test_enqueue_scripts() {
 	wp_localize_script( 'slidersown', 'ownmainsliders', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
+		
+	wp_enqueue_script( 'test', plugins_url( 'includes/javascript/test.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_localize_script( 'test', 'testname', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+	
 }
 
 
