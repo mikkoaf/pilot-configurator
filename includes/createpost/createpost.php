@@ -7,13 +7,13 @@ function create_schoolquestions($results, $pagenbr) {
 	
 	$author_id = 1;
 	$qst_nmbr = 1;
-
+	//Vaihda value placeholderiksi
 	ob_start();
 	echo '<form id="schoolQuestForm" class="questionForm">';
 	foreach ($results as $row){
 		$title = $row->theme;
 		$this_question = $row->question;
-		echo '<p>'.$this_question.'</p><input name="sqans'.$qst_nmbr.'" class="schoolSlider'.$qst_nmbr.'" type="text"/><br/>';
+		echo '<p>'.$this_question.'</p><div class="schoolQCont"><input name="sqans'.$qst_nmbr.'" class="schoolSlider'.$qst_nmbr.'" type="text"/></div><br/>';
 		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
 		$qst_nmbr = $qst_nmbr + 1;
 	}

@@ -1,7 +1,6 @@
 jQuery( document ).ready(function($) {
  
 	if( $("#schoolQuestForm").length ){
-		console.log("SCHOOL");
 		 var x = 0;
 		 var y = 1;
 		 var school = ".schoolSlider" + y;
@@ -30,7 +29,7 @@ jQuery( document ).ready(function($) {
 			if ( $( companyDS ).length ) {
 		 
 				$(companyDS).slider({ min: 0, max: 5, value: [0, 5], focus: true });
-				$(companySS).slider({ min: 0, max: 3, value: 0, focus: true });
+				$(companySS).slider({ min: 0, max: 2, value: 0, focus: true });
 
 			}
 			else{

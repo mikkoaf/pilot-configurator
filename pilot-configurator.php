@@ -61,9 +61,11 @@ require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 
 
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
+
 register_activation_hook (__FILE__, 'createquestinaires');
 register_activation_hook (__FILE__, 'create_splashes');
-
 
 #MUISTA POISTAA!!
 add_action('wp_ajax_test_echo', 'test_echo');
@@ -79,6 +81,7 @@ function ajax_test_enqueue_scripts() {
 	));
 	
 	
+	wp_enqueue_style(' bootstrap_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap.min.css', __FILE__ ));
 	wp_enqueue_style(' sliders_style', plugins_url( 'includes/javascript/bootstrap-slider/css/bootstrap-slider.css', __FILE__ ));
 	wp_enqueue_script( 'sliders_main', plugins_url( 'includes/javascript/bootstrap-slider/bootstrap-slider.js', __FILE__ ), array('jquery'));
 	wp_localize_script( 'slidersmain', 'mainsliders', array(
