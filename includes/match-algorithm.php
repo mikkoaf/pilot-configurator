@@ -41,3 +41,28 @@ function match_alg($data_array){
 		$result = $points / $points_max * 100; // calculates the results in percents
 	return intval($result);
 }
+
+// function with own query for testing algorithm 
+function match_alg_test($user_id_comp, $user_id_school, $question_id_first=1, $question_id_last=23){
+	
+	// db-query
+	global $wpdb;	
+	$company_answer_table = $wpdb->prefix . 'Company_answer';
+	$school_answer_table = $wpdb->prefix . 'School_answer';
+
+	$query_result = $wpdb->get_results(
+		"SELECT answer_val AS answer, $school_answer_table.question_id, answer_max, answer_min, answer_priority
+		FROM $school_answer_table
+		INNER JOIN (SELECT question_id, answer_max, answer_min, answer_priority
+						FROM $company_answer_table
+						WHERE company_id=$user_id_comp
+						) AS company_answer_query ON $school_answer_table.question_id=company_answer_query.question_id
+		WHERE company_id=$user_id_comp
+			AND school_id=$user_id_school
+			AND $school_answer_table.question_id>=$question_id_first
+			AND $school_answer_table.question_id<=$question_id_last
+		ORDER BY question_id ASC");
+
+	 // call match_alg with the results of the query
+	 return match_alg($query_result);
+ }
