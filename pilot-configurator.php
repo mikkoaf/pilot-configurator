@@ -63,6 +63,7 @@ require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 
 register_activation_hook (__FILE__, 'createquestinaires');
 register_activation_hook (__FILE__, 'create_splashes');
+register_deactivation_hook (__FILE__, 'remove_splashes');
 
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
