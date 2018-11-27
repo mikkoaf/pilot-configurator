@@ -19,6 +19,7 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
     public function init() {
       // add login related actions here
       add_action( 'wp_login', array( $this, 'inno_oppiva_cookie_set' ), 10, 2 );
+      add_action( 'wp_login', array( $this, 'inno_oppiva_redirect_to_splash' ), 10, 2 );
     }
 
     public function inno_oppiva_cookie_set( $user_login, $user ) {
@@ -29,6 +30,24 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
         $some_user_information_hash = hash("sha256", $some_user_information . '.' . $salt);
         setcookie( 'inno-oppiva-login-cookie', $some_user_information_hash, time() + 3600, '/');
         setcookie( 'inno-oppiva-login-cookie-unhashed', $some_user_information . '.' . $salt, time() + 3600, '/');
+      }
+    }
+
+    public function inno_oppiva_redirect_to_splash( $user_login, $user ) {
+      global $wpdb;
+      $table_name = $wpdb->prefix . 'posts';
+  
+      if ( user_can( $user, 'company' ) ){
+          $slug = 'company_splash';
+          $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+          wp_redirect(get_permalink($result[0]));
+          exit;
+      }
+      else if (user_can( $user, 'school') ){
+          $slug = 'school_splash';
+          $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+          wp_redirect(get_permalink($result[0]));
+          exit;
       }
 
     }
