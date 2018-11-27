@@ -19,6 +19,7 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
     public function init() {
       // add login related actions here
       add_action( 'wp_login', array( $this, 'inno_oppiva_cookie_set' ), 10, 2 );
+      add_action( 'wp_logout', array( $this, 'inno_oppiva_cookie_clear' ), 10, 2 );
       add_action( 'wp_login', array( $this, 'inno_oppiva_redirect_to_splash' ), 10, 2 );
     }
 
@@ -30,6 +31,13 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
         $some_user_information_hash = hash("sha256", $some_user_information . '.' . $salt);
         setcookie( 'inno-oppiva-login-cookie', $some_user_information_hash, time() + 3600, '/');
         setcookie( 'inno-oppiva-login-cookie-unhashed', $some_user_information . '.' . $salt, time() + 3600, '/');
+      }
+    }
+
+    public function inno_oppiva_cookie_clear() {
+      if ( isset( $_COOKIE['inno-oppiva-login-cookie'] ) ) {
+        setcookie( 'inno-oppiva-login-cookie', '', -1, '/');
+        setcookie( 'inno-oppiva-login-cookie-unhashed', '', -1, '/');
       }
     }
 
