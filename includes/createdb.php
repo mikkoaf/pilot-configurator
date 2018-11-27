@@ -23,26 +23,26 @@ function jal_install() {
 
 	$sql1 = "CREATE TABLE IF NOT EXISTS $table_name3(
 		company_answer_id INT(3) NOT NULL AUTO_INCREMENT,
-		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
+		company_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
 		answer_max INT(1) NOT NULL,
 		answer_min INT(1) NOT NULL,
 		answer_priority INT(1),
-		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
+		FOREIGN KEY (company_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
 		PRIMARY KEY (company_answer_id)
 		)$charset_collate;";
 
 	$sql2 =	"CREATE TABLE IF NOT EXISTS $table_name4(
 		school_answer_id INT(3) NOT NULL AUTO_INCREMENT,
-		wpuser_id BIGINT(20) UNSIGNED NOT NULL,
+		school_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
-		company_answer_id INT(3) NOT NULL,
+		company_id BIGINT(20) UNSIGNED NOT NULL,
 		answer_val INT(1) NOT NULL,
 		comment VARCHAR(300),
-		FOREIGN KEY (wpuser_id) REFERENCES $table_name1 (ID),
+		FOREIGN KEY (school_id) REFERENCES $table_name1 (ID),
 		FOREIGN KEY (question_id) REFERENCES $table_name2 (question_id),
-		FOREIGN KEY (company_answer_id) REFERENCES $table_name3 (company_answer_id), 
+		FOREIGN KEY (company_id) REFERENCES $table_name1 (ID), 
 		PRIMARY KEY (school_answer_id)
 		)$charset_collate;";
 		
