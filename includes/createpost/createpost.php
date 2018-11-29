@@ -1,5 +1,5 @@
 <?php
-function create_schoolquestions($results, $pagenbr) {
+function create_schoolquestions($results, $pagenbr, $maxpages) {
 	global $wpdb;
 
 	$author_id = 1;
@@ -9,15 +9,20 @@ function create_schoolquestions($results, $pagenbr) {
 	$qst_nmbr = 1;
 	//Vaihda value placeholderiksi
 	ob_start();
-	echo '<form id="schoolQuestForm" class="questionForm">';
+	echo 'Kysymykset '.$pagenbr.'/'.$maxpages.'';
+	echo '<form id="schoolQuestForm" class="questionForm" data-pgnumber="'.$pagenbr.'">';
 	foreach ($results as $row){
 		$title = $row->theme;
 		$this_question = $row->question;
-		echo '<p>'.$this_question.'</p><div class="schoolQCont"><input name="sqans'.$qst_nmbr.'" class="schoolSlider'.$qst_nmbr.'" type="text"/></div><br/>';
-		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
+		$dbnumber = $row->question_id;
+		echo '<p>'.$this_question.'</p><div class="schoolQCont"><input name="sqans_'.$dbnumber.'" class="schoolSlider'.$qst_nmbr.'" type="text"/></div><br/>';
+		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom_'.$dbnumber.'" placeholder="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
 		$qst_nmbr = $qst_nmbr + 1;
 	}
-	echo '<br><input type="button" value="Edellinen" height="60"></input>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Seuraava" height="60"></input></form>';
+	if($pagenbr != 1){
+	echo '<br><input type="button" value="Edellinen" height="60"></input>';
+	}
+	echo '<input type="submit" value="Seuraava" height="60"></input></form>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
@@ -38,7 +43,7 @@ function create_schoolquestions($results, $pagenbr) {
 		);
 	}
 }
-function create_companyquestions($results, $pagenbr) {
+function create_companyquestions($results, $pagenbr, $maxpages) {
 	global $wpdb;
 
 	$author_id = 1;
@@ -46,16 +51,20 @@ function create_companyquestions($results, $pagenbr) {
 	
 	$qst_nmbr = 1;
 	ob_start();
-	echo '<form id="companyQuestForm" class="questionForm">';
+	echo 'Kysymykset '.$pagenbr.'/'.$maxpages.'';
+	echo '<form id="companyQuestForm" class="questionForm" data-pgnumber="'.$pagenbr.'">';
 	foreach ($results as $row){
 		$title = $row->theme;
 		$this_question = $row->question;
-		echo '<p>'.$this_question.'</p><input name="cqans'.$qst_nmbr.'" class="companyDS'.$qst_nmbr.'" type="text"/><br>';
-		echo '<input name="sqimprtance'.$qst_nmbr.'" class="companySS'.$qst_nmbr.'" type="text"/><br>';
-		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom'.$qst_nmbr.'" value="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
+		$dbnumber = $row->question_id;
+		echo '<p>'.$this_question.'</p><input name="cqans_'.$dbnumber.'" class="companyDS'.$qst_nmbr.'" type="text"/><br>';
+		echo '<input name="sqimprtance_'.$dbnumber.'" class="companySS'.$qst_nmbr.'" type="text"/><br>';
 		$qst_nmbr = $qst_nmbr + 1;
+	}	
+	if($pagenbr != 1){
+	echo '<br><input type="button" value="Edellinen" height="60"></input>';
 	}
-	echo '<br><input type="button" value="Edellinen" height="60"></input>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Seuraava" height="60"></input></form>';
+	echo '<input type="submit" value="Seuraava" height="60"></input></form>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
