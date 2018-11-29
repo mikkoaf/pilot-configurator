@@ -15,7 +15,6 @@ jQuery( document ).ready(function($) {
 			}
 			y = y + 1;
 			school = ".schoolSlider" + y;
-			 console.log(school);
 		 }
 	}
 	
@@ -38,7 +37,6 @@ jQuery( document ).ready(function($) {
 			y = y + 1;
 			companyDS = ".companyDS" + y;
 			companySS = ".companySS" + y;
-			console.log(school);
 		 }
 	}
 });
