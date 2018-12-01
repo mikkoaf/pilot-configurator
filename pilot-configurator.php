@@ -68,8 +68,10 @@ register_activation_hook (__FILE__, 'createquestinaires');
 register_activation_hook (__FILE__, 'create_splashes');
 register_deactivation_hook (__FILE__, 'remove_splashes');
 
-#MUISTA POISTAA!!
-add_action('wp_ajax_test_echo', 'test_echo');
+
+add_action('wp_ajax_list_active_companies', 'list_active_companies');
+add_action('wp_ajax_school_question_insert', 'school_question_insert');
+add_action('wp_ajax_company_question_insert', 'company_question_insert');
 register_activation_hook (__FILE__, 'ajax_test_enqueue_scripts');
 add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts');
 
@@ -90,6 +92,11 @@ function ajax_test_enqueue_scripts() {
 		
 	wp_enqueue_script( 'test', plugins_url( 'includes/javascript/test.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'test', 'testname', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+	
+	wp_enqueue_script( 'companyLister', plugins_url( 'includes/javascript/companyLister.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_localize_script( 'companyLister', 'company_lister', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
 	

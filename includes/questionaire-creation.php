@@ -14,7 +14,7 @@ function createquestinaires()	{
 	}
 }
 
-function test_echo(){
+function company_question_insert(){
 	global $wpdb;
 	
 	parse_str($_POST['cont'], $newarray);
@@ -35,4 +35,22 @@ function test_echo(){
 	}
 	die();
 }
+function school_question_insert(){
+	
+	echo 'Not yet implemented';
+	die();
+}
+function list_active_companies(){
+	global $wpdb;
+	
+	
+	$companies = $wpdb->get_results("SELECT DISTINCT company_id FROM wp_Company_answer");
+	foreach($companies as $single){
+		$company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $single->company_id");
+		echo $company_name;
+		echo "\r\n";
+	}
+	die();
+}
+
 ?>
