@@ -9,7 +9,7 @@ function create_splashes(){
 	$link = 'TODO';
 	
 	ob_start();
-		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p><p>Jos käytät järjestelmää ensimmäistä kertaa, toivomme että vastaisitte kyselylomakkeisiin alla olevasta linkistä:</p><a href="'.$link.'">Kyselylomakkeisiin</a>';
+		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p><p>Alle on listattuna tuotteet joiden kyselyihin voitte vastata:</p><span id="company_list">Tähän pitäisi tulla vastanneet userit</span>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	

@@ -1,5 +1,5 @@
 jQuery( document ).ready(function($) {
- 
+	
 	if( $("#schoolQuestForm").length ){
 		 var x = 0;
 		 var y = 1;
