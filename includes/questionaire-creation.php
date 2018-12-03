@@ -1,4 +1,9 @@
 <?php
+
+/*
+ * The function that creates the questionaires from the database entries
+ */
+
 function createquestinaires()	{
 	global $wpdb;
 	require_once (dirname(__FILE__) . '/createpost/createpost.php');
@@ -14,6 +19,9 @@ function createquestinaires()	{
 	}
 }
 
+/*
+ * Function that inserts the entries for company questionaires
+ */
 function company_question_insert(){
 	global $wpdb;
 	
@@ -35,11 +43,21 @@ function company_question_insert(){
 	}
 	die();
 }
+
+/*
+ * Function that inserts the entries for school questionaires (not yet implemented)
+ */
+
 function school_question_insert(){
 	
 	echo 'Not yet implemented';
 	die();
 }
+
+/*
+ * Function that lists the companies that have answered the questionaires and echos out their user_nicename (subject to change)
+ */
+
 function list_active_companies(){
 	global $wpdb;
 	

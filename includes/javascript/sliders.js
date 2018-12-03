@@ -28,7 +28,7 @@ jQuery( document ).ready(function($) {
 			if ( $( companyDS ).length ) {
 		 
 				$(companyDS).slider({ min: 0, max: 5, value: [0, 5], focus: true });
-				$(companySS).slider({ min: 0, max: 2, value: 0, focus: true });
+				$(companySS).slider({ ticks:[0, 1, 2], ticks_labels: ["Ei tärkeä", "Tärkeä", "Hyvin Tärkeä"], tooltip: "hide", value: 1});
 
 			}
 			else{

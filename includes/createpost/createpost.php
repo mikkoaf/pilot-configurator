@@ -7,7 +7,7 @@ function create_schoolquestions($results, $pagenbr, $maxpages) {
 	
 	$author_id = 1;
 	$qst_nmbr = 1;
-	//Vaihda value placeholderiksi
+	
 	ob_start();
 	echo 'Kysymykset '.$pagenbr.'/'.$maxpages.'';
 	echo '<form id="schoolQuestForm" class="questionForm" data-pgnumber="'.$pagenbr.'">';
@@ -20,9 +20,9 @@ function create_schoolquestions($results, $pagenbr, $maxpages) {
 		$qst_nmbr = $qst_nmbr + 1;
 	}
 	if($pagenbr != 1){
-	echo '<br><input type="button" value="Edellinen" height="60"></input>';
+	echo '<br><input type="button" id="back_button" value="Edellinen"></input>';
 	}
-	echo '<input type="submit" value="Seuraava" height="60"></input></form>';
+	echo '<input type="submit" value="Seuraava"></input></form>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
@@ -58,13 +58,13 @@ function create_companyquestions($results, $pagenbr, $maxpages) {
 		$this_question = $row->question;
 		$dbnumber = $row->question_id;
 		echo '<p>'.$this_question.'</p><input name="cqans_'.$dbnumber.'" class="companyDS'.$qst_nmbr.'" type="text"/><br>';
-		echo '<input name="sqimprtance_'.$dbnumber.'" class="companySS'.$qst_nmbr.'" type="text"/><br>';
+		echo '<input name="sqimprtance_'.$dbnumber.'" class="companySS'.$qst_nmbr.'" type="text" data-slider-ticks="[0, 1, 2]" data-slider-ticks-labels=\'["1", "2", "3"]\' data-slider-tooltip="hide" /><br>';
 		$qst_nmbr = $qst_nmbr + 1;
 	}	
 	if($pagenbr != 1){
-	echo '<br><input type="button" value="Edellinen" height="60"></input>';
+	echo '<br><input type="button" id="back_button" value="Edellinen"></input>';
 	}
-	echo '<input type="submit" value="Seuraava" height="60"></input></form>';
+	echo '<input type="submit" value="Seuraava"></input></form>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
