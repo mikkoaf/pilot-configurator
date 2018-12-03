@@ -7,7 +7,7 @@ jQuery( document ).ready(function($) {
 		 while(x == 0){
 			if ( $( school ).length ) {
 		 
-				$(school).slider({ min: 0, max: 5, value: 0, focus: true });
+				$(school).slider({ min: 1, max: 5, value: 0, focus: true });
 
 			}
 			else{
@@ -27,8 +27,8 @@ jQuery( document ).ready(function($) {
 		 while(x == 0){
 			if ( $( companyDS ).length ) {
 		 
-				$(companyDS).slider({ min: 0, max: 5, value: [0, 5], focus: true });
-				$(companySS).slider({ ticks:[0, 1, 2], ticks_labels: ["Ei tärkeä", "Tärkeä", "Hyvin Tärkeä"], tooltip: "hide", value: 1});
+				$(companyDS).slider({ min: 1, max: 5, value: [1, 5], focus: true });
+				$(companySS).slider({ ticks:[1, 2, 3], ticks_labels: ["Ei tärkeä", "Tärkeä", "Hyvin Tärkeä"], tooltip: "hide", value: 2});
 
 			}
 			else{

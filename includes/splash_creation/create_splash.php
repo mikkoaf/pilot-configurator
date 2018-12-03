@@ -27,7 +27,7 @@ function create_splashes(){
 	);
 	
 	$slug = 'company_splash';
-	$link = 'TODO';
+	$link = $url = home_url( '/company_question1/', 'https' );;
 
 	ob_start();
 		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p><p>Jos käytät järjestelmää ensimmäistä kertaa, toivomme että vastaisitte kyselylomakkeisiin alla olevasta linkistä:</p><a href="'.$link.'">Kyselylomakkeisiin</a>';
