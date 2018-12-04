@@ -16,9 +16,9 @@ function createquestinaires()	{
 		
 		/*
 		 * Calls the questioncreation functions with parameters: 
-		 * The database results of the questions
-		 * The number the set of questions
-		 * The number of questionsets in database
+		 * - The database results of the questions
+		 * - The number the set of questions
+		 * - The number of questionsets in database
 		 */
 		create_schoolquestions($results, $x, $amount);
 		create_companyquestions($results, $x, $amount);
@@ -64,10 +64,17 @@ function company_question_insert(){
 			$minmax = explode(",", $val);
 		}
 		else{
-			$wpdb->query(
-		  "INSERT INTO wp_Company_answer VALUES 
-		  (NULL, $uid, $namenumber[1], $minmax[1], $minmax[0], $val)
-		  ");
+			
+			// Checks whether there already is a database entry, if it does exist it is only updated, if it doesnt it is created
+			if($wpdb->get_row("SELECT * FROM wp_Company_answer WHERE company_id = $uid AND question_id = $namenumber[1]") == NULL){
+				$wpdb->query(
+			  "INSERT INTO wp_Company_answer VALUES 
+			  (NULL, $uid, $namenumber[1], $minmax[1], $minmax[0], $val)
+			  ");
+			}
+			else{
+				$wpdb->update('wp_Company_answer', array('answer_max' => $minmax[1], 'answer_min' => $minmax[0], 'answer_priority' => $val), array('company_id' => $uid, 'question_id' => $namenumber[1]));
+			}
 		}
 	}
 	die();
@@ -78,8 +85,33 @@ function company_question_insert(){
  */
 
 function school_question_insert(){
+	global $wpdb;
 	
-	echo 'Not yet implemented';
+	parse_str($_POST['cont'], $newarray);
+	$uid = get_current_user_id();
+	$cookieVal = $_COOKIE['company-identification'];
+	
+	foreach($newarray as $key => $val){
+		$namenumber = explode("_", $key);
+
+		if($namenumber[0] == "sqans"){
+			$schoolans = $val;
+		}
+		else{
+			
+			// Checks whether there already is a database entry, if it does exist it is only updated, if it doesnt it is created
+			if($wpdb->get_row("SELECT * FROM wp_School_answer WHERE school_id = $uid AND question_id = $namenumber[1] AND company_id = $cookieVal") == NULL){
+				$wpdb->query(
+			  "INSERT INTO wp_School_answer VALUES 
+			  (NULL, $uid, $namenumber[1], $cookieVal, $schoolans, '$val')
+			  ");
+			}
+			else{
+				$wpdb->update('wp_School_answer', array('answer_val' => $schoolans, 'comment' => $val), array('school_id' => $uid, 'question_id' => $namenumber[1], 'company_id' => $cookieVal));
+			}
+		}
+	}
+	
 	die();
 }
 
@@ -92,11 +124,30 @@ function list_active_companies(){
 	
 	
 	$companies = $wpdb->get_results("SELECT DISTINCT company_id FROM wp_Company_answer");
+	$test = "";
+	
+	$test .= '<ul>';
 	foreach($companies as $single){
+		$id = $single->company_id;
 		$company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $single->company_id");
-		echo $company_name;
-		echo "\r\n";
+		$test .= '<li><a href="#" onclick="return giveCompanyCookie('.$id.')"> ' .$company_name. '</a></li>';
+		$test .= "\r\n";
 	}
+	$test .= '</ul>';
+	echo $test;
+	die();
+}
+
+function company_id_cookie_set() {
+	global $wpdb;
+	$company_id = $_POST['cont'];
+	
+	$company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $company_id");
+	$urlpath = get_site_url();
+	$urlpath .= "/'$company_name'";
+	
+    setcookie( 'company-identification', $company_id, time() + 3600, '/');
+	echo $urlpath;
 	die();
 }
 

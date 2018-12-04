@@ -17,9 +17,33 @@ jQuery( document ).ready(function($) {
 				},
 				success : function( response ) {
 					// Replaces the element text with the companies
-					companylist.innerText = companylist.textContent = response;
+					companylist.innerHTML = response;
 				}
 			});
 		
 	}
 });
+
+function giveCompanyCookie(CID){
+	
+	// + '://' + window.location.hostname + 'school_question1'
+	var pagepath = window.location.protocol;
+	pagepath = pagepath + "//" + window.location.hostname + "/school_question1";
+	
+	console.log(pagepath);
+	jQuery.ajax({
+		
+		url : company_lister.ajax_url,
+		type : 'POST',
+		data : {
+					'action' : 'company_id_cookie_set',
+					'cont' : CID
+			},
+		success : function( response ) {
+				console.log(response);
+				window.location.href = pagepath;
+			}
+		});
+		
+	
+}
