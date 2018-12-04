@@ -21,6 +21,7 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
       add_action( 'wp_login', array( $this, 'inno_oppiva_cookie_set' ), 10, 2 );
       add_action( 'wp_logout', array( $this, 'inno_oppiva_cookie_clear' ), 10, 2 );
       add_action( 'wp_login', array( $this, 'inno_oppiva_redirect_to_splash' ), 10, 2 );
+	  //add_action('wp_login', array( $this, 'company_check_productpage' ), 10, 2);
     }
 
     public function inno_oppiva_cookie_set( $user_login, $user ) {
@@ -59,5 +60,25 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
       }
 
     }
+	/*
+	public function company_check_productpage( $user_login, $user){
+		global $wpdb;
+		
+		if ( user_can( $user, 'company' ) ){
+			
+			$nicename = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $user->ID");
+			$result = $wpdb->get_row("SELECT * FROM wp_posts WHERE post_name = $nicename");
+			
+			if( results == NULL ){
+				require_once (dirname(__FILE__) . '/createpost/createpost.php');
+				create_productpage( $nicename, $user->ID);
+				exit;
+			}
+			exit;
+		}
+			
+		exit;
+	}
+	*/
   }
 }

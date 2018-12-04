@@ -39,6 +39,9 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/match-algorithm.php';
 
+require (dirname(__FILE__) . '/includes/questionaire-creation.php');
+require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
+
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
 
@@ -57,8 +60,6 @@ function inno_oppiva_init() {
   $inno_oppiva_login->init();
 }
 
-require (dirname(__FILE__) . '/includes/questionaire-creation.php');
-require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 
 
 remove_filter( 'the_content', 'wpautop' );
@@ -73,6 +74,7 @@ register_deactivation_hook (__FILE__, 'remove_splashes');
 add_action('wp_ajax_list_active_companies', 'list_active_companies');
 add_action('wp_ajax_school_question_insert', 'school_question_insert');
 add_action('wp_ajax_company_question_insert', 'company_question_insert');
+add_action('wp_ajax_company_id_cookie_set', 'company_id_cookie_set');
 
 
 register_activation_hook (__FILE__, 'ajax_test_enqueue_scripts');
