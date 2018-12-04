@@ -13,10 +13,39 @@ function createquestinaires()	{
 	foreach($settisets as $setti){
 		$name = $setti->question_set;
 		$results = $wpdb->get_results("SELECT * FROM wp_Questions WHERE question_set = '".$name."';");
+		
+		/*
+		 * Calls the questioncreation functions with parameters: 
+		 * The database results of the questions
+		 * The number the set of questions
+		 * The number of questionsets in database
+		 */
 		create_schoolquestions($results, $x, $amount);
 		create_companyquestions($results, $x, $amount);
 		$x = $x + 1;
 	}
+}
+
+function remove_questionaires(){
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'posts';
+
+	$slug = 'school_question%';
+	$result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE post_name LIKE '" . $slug . "'");
+	
+	foreach($result as $row){
+		$id = $row->ID;
+		wp_delete_post($id, true);
+	}
+	
+	$slug = 'company_question%';
+	$result = $wpdb->get_results("SELECT * FROM " . $table_name . " WHERE post_name LIKE '" . $slug . "%'");
+	foreach($result as $row){
+		$id = $row->ID;
+		wp_delete_post($id, true);
+	}
+	
 }
 
 /*

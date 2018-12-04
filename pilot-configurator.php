@@ -66,6 +66,7 @@ remove_filter( 'the_excerpt', 'wpautop' );
 
 register_activation_hook (__FILE__, 'createquestinaires');
 register_activation_hook (__FILE__, 'create_splashes');
+register_deactivation_hook (__FILE__, 'remove_questionaires');
 register_deactivation_hook (__FILE__, 'remove_splashes');
 
 // Registering PHP functions for the ajax functions
