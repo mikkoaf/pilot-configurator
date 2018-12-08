@@ -6,7 +6,29 @@ function pilot_admin_page_html() {
   }
   ?>
   <div class="wrap">
-    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <h1>Administrator tools</h1>
+    <form name="post" action="/view_results" method="post">
+      <fieldset>
+        <legend><h2>View company results</h2></legend>
+        <p>
+          <label>Select which company's results to view</label>
+          <select name="company_view_for_admin">
+
+            <?php
+            $companies = get_users( array('role' => 'company') );
+            foreach($companies as $company){
+              echo '<option value="' . $company->ID . '">' . $company->data->user_login . '</option>';
+            }
+            ?>
+
+          </select>
+        </p>
+      </fieldset>
+      <input type="submit" value="View results" >
+    </form>
+
+
+    <h1>Administrator options</h1>
     <form action="options.php" method="post">
       <?php
             settings_fields('pilot_configurator_settings');
@@ -26,7 +48,7 @@ function pilot_admin_page_settings_init() {
   // register 'settings_priority_section' section on the 'pilot_configurator' page
   add_settings_section(
     'settings_priority_section',
-    'Question value options',
+    'Question value',
     'settings_priority_section_cb',
     'pilot_configurator'
   );
@@ -56,21 +78,21 @@ function pilot_admin_page_settings_init() {
   // register 'settings_priority_value_#' field in the "settings_priority_section" section
   add_settings_field(
     'settings_priority_value_1',
-    'PRIORITY_1_STRING',
+    '"Ei tärkeä"',
     'setting_priority_1_cb',
     'pilot_configurator',
     'settings_priority_section'
     );
   add_settings_field(
     'settings_priority_value_2',
-    'PRIORITY_2_STRING',
+    '"Tärkeä"',
     'setting_priority_2_cb',
     'pilot_configurator',
     'settings_priority_section'
     );
   add_settings_field(
     'settings_priority_value_3',
-    'PRIORITY_3_STRING',
+    '"Hyvin tärkeä"',
     'setting_priority_3_cb',
     'pilot_configurator',
     'settings_priority_section'
@@ -104,5 +126,6 @@ function pilot_admin_page_settings_init() {
     $options = get_option('inno_oppiva_priorities');
     echo "<input id='inno_oppiva_secret' name='inno_oppiva_priorities[3]' size='3' type='number' step='1' value='{$options['3']}' />";
   }
+  
   
 }
