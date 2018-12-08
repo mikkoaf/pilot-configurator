@@ -38,6 +38,9 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/admin/class-pilot-configurator-a
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/match-algorithm.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-page-templater.php';
+
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
@@ -107,7 +110,13 @@ function ajax_test_enqueue_scripts() {
 	
 }
 
+function page_templater_init(){
+	$page_templater = new Inno_Oppiva\Page_Templater();
+	$page_templater->init();
+}
 
+register_activation_hook (__FILE__, 'create_company_view');
+register_deactivation_hook (__FILE__, 'remove_company_view');
 
 /**
   * Begins the execution of the plugin. Pilot_Configurator_Admin is required only when
@@ -124,4 +133,5 @@ function pilot_configurator_init() {
   }
 }
 inno_oppiva_init();
+page_templater_init();
 pilot_configurator_init();
