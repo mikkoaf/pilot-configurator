@@ -16,7 +16,7 @@ function create_schoolquestions($results, $pagenbr, $maxpages) {
 		$this_question = $row->question;
 		$dbnumber = $row->question_id;
 		echo '<p>'.$this_question.'</p><div class="schoolQCont"><input name="sqans_'.$dbnumber.'" class="schoolSlider'.$qst_nmbr.'" type="text"/></div><br/>';
-		echo '<br><br>Lisätietoja (ei pakollinen)<input type="text" name="sqcom_'.$dbnumber.'" placeholder="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
+		echo '<br><br>Lisätietoja (ei pakollinen)<br><input type="text" name="sqcom_'.$dbnumber.'" placeholder="Kirjoita mahdolliset lisätiedot tähän"><br><hr><br>';
 		$qst_nmbr = $qst_nmbr + 1;
 	}
 	if($pagenbr != 1){
