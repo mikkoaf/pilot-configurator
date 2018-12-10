@@ -3,8 +3,8 @@
 Plugin Name: Pilot Configurator
 Plugin URI:
 Description: Pilot Configurator for providing matchmaking in the Inno-Oppiva project
-Author: Mikko Ala-Fossi
-Version: 0.0.1
+Author: Pilot Configurator Team
+Version: 0.0.2
 Text Domain: pilot-configurator
 
 -----------------
@@ -12,6 +12,8 @@ Text Domain: pilot-configurator
 Glossary:
 
 User - a WordPress user account
+Company - a class of users representing companies in the matchmaking context
+School - a class of users representing schools in the matchmaking context
 
 */
 
@@ -26,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   * Define plugin settings as PHP globals.
   */
 define( 'PILOT_CONFIGURATOR_DIR_PATH', plugin_dir_path( __FILE__ ) );
-define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
+define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.2' );
 
 /**
   * Require plugin files.
@@ -92,19 +94,19 @@ function ajax_test_enqueue_scripts() {
 	wp_localize_script( 'slidersown', 'ownmainsliders', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 	// The script for questionform button functions
 	wp_enqueue_script( 'questionform_functions', plugins_url( 'includes/javascript/questionform_functions.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'questionform_functions', 'questionFormFunctions', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 	//The script for listing the company products in school splash screens
 	wp_enqueue_script( 'companyLister', plugins_url( 'includes/javascript/companyLister.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'companyLister', 'company_lister', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 }
 
 

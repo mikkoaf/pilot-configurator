@@ -1,4 +1,5 @@
 ![https://innooppiva.wordpress.com/](https://innooppiva.files.wordpress.com/2017/03/cropped-ylc3a4footer.png)
+[![Build Status](https://travis-ci.com/mikkoaf/pilot-configurator.svg?branch=master)](https://travis-ci.com/mikkoaf/pilot-configurator)
 
 # Inno-Oppiva Pilot Configurator
 
