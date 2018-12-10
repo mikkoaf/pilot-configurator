@@ -14,19 +14,19 @@ function match_alg($data_array){
 	$max = array_column($data_array, 'answer_max');      // "maximium" value, get max points after this
 	$answ = array_column($data_array, 'answer');         // school's answer
 
-	$answer_count = count($answ);	// could be hardcoded to 23
+	$length = count($data_array);		// can be smaller than question count
 	$priority = get_option("inno_oppiva_priorities");
 
 	$points = 0;                 // counts how well school's answers are valued by the company
 	$points_max = 0;             // counts how many points a perfect set of answers would get
-	for($i=0; $i<$answer_count; $i++){ 
+	for($i=0; $i<$length; $i++){ 
 		$points_max+= $priority[$prio[$i]];
 	}
 
-	for($i=0; $i<$answer_count; $i++){
+	for($i=0; $i<$length; $i++){
 		if($answ[$i] >= $min[$i]){
 			// check if school deserves full points or not
-			if($answ[$i] > $max[$i]){ 
+			if($answ[$i] >= $max[$i]){ 
 				// add full points for given question
 				$points+= $priority[$prio[$i]];
 			}
