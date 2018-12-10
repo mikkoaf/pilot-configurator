@@ -21,7 +21,7 @@ get_header(); ?>
                $company_id = $_POST['company_view_for_admin'];       
             }
             else{
-               echo "Please use the administrator page to view a specific company's results"; 
+               echo "Käytä admin sivua nähdäksesi tietyn yrityksen tulokset"; 
                die;
             }
          }
@@ -31,7 +31,7 @@ get_header(); ?>
          else{
             die('Access Denied!');
          }
-         echo '<h1>Results for ' . get_user_by('id', $company_id)->user_nicename . '</h1>';
+         echo '<h1>' . get_user_by('id', $company_id)->user_nicename . ' tulokset</h1>';
 
          $company_answer_table = $wpdb->prefix . 'Company_answer';
          $school_answer_table = $wpdb->prefix . 'School_answer';
@@ -95,10 +95,14 @@ get_header(); ?>
          $company_view_content = ob_get_contents(); 
          ob_end_clean();
 
+         if($company_view_content == ''){ 
+            $company_view_content = 'Tuloksia ei vielä ole'; 
+         } 
+
          // Loop from page.php
          while ( have_posts() ) :
 				the_post();
-				//get_template_part( 'template-parts/page/content', 'page' ); // prints unwanted post data 
+				// get_template_part( 'template-parts/page/content', 'page' ); // prints unwanted post data 
             echo $company_view_content; // Insert custom content
 				// Fetching comments removed
 			endwhile;
