@@ -23,15 +23,24 @@ jQuery(document).ready(function(event) {
 		
 		// The questionsets are numbered so by adding to the pagenumber the script can create the new url.
 		var pagenumber = parseInt(pageelem.dataset.pgnumber);
+		var maxpages = parseInt(pageelem.dataset.maxpages);
 		var newpagenumber = pagenumber + 1;
-		
+	if (newpagenumber <= maxpages ){	
 		if (pagepath.includes("school_question")) {
 			var newpage =  "https://wordpress.local/school_question" + newpagenumber; 
 		}
 		if (pagepath.includes("company_question")) {
 			var newpage =  "https://wordpress.local/company_question" + newpagenumber; 
 		}
+	}else {
+		if (pagepath.includes("school_question")) {
+			var newpage =  "https://wordpress.local/school_splash"; 
+		}
+		if (pagepath.includes("company_question")) {
+			var newpage =  "https://wordpress.local/company_splash"; 
+		}
 		
+	}	
 		// Ajax that sends the data to the corresponding PHP-function.
 		
 		var testData = jQuery(this).serialize();
@@ -85,5 +94,5 @@ jQuery(document).ready(function(event) {
 		// This redirects the page
 		window.location.href = newpage;
 	});
-
+	
 });

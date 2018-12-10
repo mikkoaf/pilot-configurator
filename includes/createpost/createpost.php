@@ -10,7 +10,7 @@ function create_schoolquestions($results, $pagenbr, $maxpages) {
 	
 	ob_start();
 	echo 'Kysymykset '.$pagenbr.'/'.$maxpages.'';
-	echo '<form id="schoolQuestForm" class="questionForm" data-pgnumber="'.$pagenbr.'">';
+	echo '<form id="schoolQuestForm" class="questionForm" data-maxpages="' . $maxpages . '"  data-pgnumber="'.$pagenbr.'">';
 	foreach ($results as $row){
 		$title = $row->theme;
 		$this_question = $row->question;
@@ -22,7 +22,11 @@ function create_schoolquestions($results, $pagenbr, $maxpages) {
 	if($pagenbr != 1){
 	echo '<br><input type="button" id="back_button" value="Edellinen"></input>';
 	}
-	echo '<input type="submit" value="Seuraava"></input></form>';
+	if($pagenbr < $maxpages){
+		echo '<input type="submit" value="Seuraava"></input></form>';
+	} else {
+		echo '<input type="submit" value="Lopeta kysely"></input></form>';
+	}
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
@@ -52,7 +56,7 @@ function create_companyquestions($results, $pagenbr, $maxpages) {
 	$qst_nmbr = 1;
 	ob_start();
 	echo 'Kysymykset '.$pagenbr.'/'.$maxpages.'';
-	echo '<form id="companyQuestForm" class="questionForm" data-pgnumber="'.$pagenbr.'">';
+	echo '<form id="companyQuestForm" class="questionForm" data-maxpages="' . $maxpages . '" data-pgnumber="'.$pagenbr.'">';
 	foreach ($results as $row){
 		$title = $row->theme;
 		$this_question = $row->question;
@@ -64,7 +68,12 @@ function create_companyquestions($results, $pagenbr, $maxpages) {
 	if($pagenbr != 1){
 	echo '<br><input type="button" id="back_button" value="Edellinen"></input>';
 	}
-	echo '<input type="submit" value="Seuraava"></input></form>';
+	if(intval($pagenbr) < intval($maxpages)){
+		echo '<input type="submit" value="Seuraava"></input></form>';
+	} else {
+		echo '<input type="submit" value="Lopeta kysely"></input></form>';
+	}
+	
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
