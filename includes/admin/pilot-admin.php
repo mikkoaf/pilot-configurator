@@ -6,12 +6,12 @@ function pilot_admin_page_html() {
   }
   ?>
   <div class="wrap">
-    <h1>Administrator tools</h1>
+    <h1>Ylläpitäjän työkalut</h1>
     <form name="post" action="/view_results" method="post">
       <fieldset>
-        <legend><h2>View company results</h2></legend>
+        <legend><h2>Tulosten katsaus</h2></legend>
         <p>
-          <label>Select which company's results to view</label>
+          <label>Valitse yritys</label>
           <select name="company_view_for_admin">
 
             <?php
@@ -24,17 +24,17 @@ function pilot_admin_page_html() {
           </select>
         </p>
       </fieldset>
-      <input type="submit" value="View results" >
+      <input type="submit" value="Tuloksiin" >
     </form>
 
 
-    <h1>Administrator options</h1>
+    <h1>Ylläpito asetukset</h1>
     <form action="options.php" method="post">
       <?php
             settings_fields('pilot_configurator_settings');
             do_settings_sections('pilot_configurator');
             
-            submit_button('Save Settings');
+            submit_button('Tallenna asetukset');
       ?>
     </form>
   </div>
@@ -48,7 +48,7 @@ function pilot_admin_page_settings_init() {
   // register 'settings_priority_section' section on the 'pilot_configurator' page
   add_settings_section(
     'settings_priority_section',
-    'Question value',
+    'Kysymysten arvot',
     'settings_priority_section_cb',
     'pilot_configurator'
   );
@@ -56,7 +56,7 @@ function pilot_admin_page_settings_init() {
   // register 'settings_security_section' section on the 'pilot_configurator' page
   add_settings_section(
     'settings_security_section',
-    'Security options',
+    'Tietoturva asetukset',
     'settings_security_section_cb',
     'pilot_configurator'
   );
@@ -64,14 +64,14 @@ function pilot_admin_page_settings_init() {
   // create the 'settings_priority_section' section
   function settings_priority_section_cb($args) {
     ?>
-    <p><?php esc_html_e('Multipliers for questions importance to a company (inno_oppiva_priorities)', 'pilot_configurator'); ?></p>
+    <p><?php esc_html_e('Painoarvot kysymysten tärkeydelle', 'pilot_configurator'); ?></p>
     <?php
   }
 
   // create the 'settings_security_section' section
   function settings_security_section_cb($args) {
     ?>
-    <p><?php esc_html_e('Security options for administrator', 'pilot_configurator'); ?></p>
+    <p><?php esc_html_e('Ylläpidon tietoturva asetukset', 'pilot_configurator'); ?></p>
     <?php
   }
 
@@ -101,7 +101,7 @@ function pilot_admin_page_settings_init() {
   // register 'settings_security_secret' field in the "settings_security_section" section
   add_settings_field(
   'settings_security_secret',
-  'Secret hashing salt (inno_oppiva_secret)',
+  'Salainen hash suola (inno_oppiva_secret)',
   'setting_string_cb',
   'pilot_configurator',
   'settings_security_section'
