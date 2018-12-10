@@ -44,7 +44,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
 
 require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
-require (dirname(__FILE__) . '/includes/createpost/create-product-information.php');
+require (dirname(__FILE__) . '/includes/pages/create-product-information.php');
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
@@ -74,6 +74,7 @@ register_activation_hook (__FILE__, 'create_splashes');
 register_activation_hook (__FILE__, 'create_product_information');
 register_deactivation_hook (__FILE__, 'remove_questionaires');
 register_deactivation_hook (__FILE__, 'remove_splashes');
+register_deactivation_hook (__FILE__, 'remove_product_information');
 
 // Registering PHP functions for the ajax functions
 add_action('wp_ajax_list_active_companies', 'list_active_companies');

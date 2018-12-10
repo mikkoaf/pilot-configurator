@@ -143,7 +143,7 @@ function company_id_cookie_set() {
 	$company_id = $_POST['cont'];
 	
 	$urlpath = get_site_url();
-	$urlpath .= "/product-information";
+	$urlpath .= "/product_information";
 	
     setcookie( 'company-identification', $company_id, time() + 3600, '/');
 	echo $urlpath;

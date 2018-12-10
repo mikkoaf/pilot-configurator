@@ -14,19 +14,31 @@ get_header(); ?>
 			
          global $wpdb;
 		 
-         if (current_user_can( 'administrator' ) || current_user_can( 'school' ) || current_user_can( 'company' ) ) {
+         if (!( current_user_can( 'administrator' ) || current_user_can( 'school' ) || current_user_can( 'company' ) ) ) {
 			die('Access Denied!');
 		 }
 		 
-		 //$user_id = $_COOKIE['company-identification'];
-		 //$content_results = wpdb->get_var( "SELECT meta_value FROM wp_usermeta WHERE user_id = $user_id AND meta_key = 'description' ");
-		 //echo "Toimiiko";
-		 $content_results2 = "<p>Toimiiko</p>";
+		 $user_id = $_COOKIE['company-identification'];
+		 $content_results = $wpdb->get_var( "SELECT meta_value FROM wp_usermeta WHERE user_id = $user_id AND meta_key = 'description' ");
+		 $link = home_url( '/school_question1', 'https' );
+		 $test = '';
+		 ob_start();
+		 echo '<p>';
+		 echo $content_results;
+		 echo '</p>';
+		 echo $test;
+		 
+		 $content = ob_get_contents(); 
+         ob_end_clean();
+
 		 
 		 while ( have_posts() ) :
 				the_post();
-				//get_template_part( 'template-parts/page/content', 'page' ); // prints unwanted post data 
-            echo $content_results2; // Insert custom content
+				get_template_part( 'template-parts/page/content', 'page' ); // prints unwanted post data 
+            echo $content;			// Insert custom content
+			?>
+			<input type="button" onclick="location.href='<?php echo $link ?>';" value="Kysymyksiin" />
+			<?php
 				// Fetching comments removed
 			endwhile;
          
