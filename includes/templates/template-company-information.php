@@ -21,15 +21,18 @@ get_header(); ?>
 		 $user_id = $_COOKIE['company-identification'];
 		 $content_results = $wpdb->get_var( "SELECT meta_value FROM wp_usermeta WHERE user_id = $user_id AND meta_key = 'description' ");
 		 $link = home_url( '/school_question1', 'https' );
-		 $test = '';
+		 if($content_results == NULL || $content_results == ''){
+			 $company_name = $wpdb->get_var( "SELECT user_nicename FROM wp_users WHERE ID = $user_id");
+			 $content_results = "Ikävä kyllä tuotteesta $company_name ei ole kirjoitettu vielä tuotekuvaustaan"; 
+		 }
 		 ob_start();
 		 echo '<p>';
 		 echo $content_results;
 		 echo '</p>';
-		 echo $test;
 		 
 		 $content = ob_get_contents(); 
          ob_end_clean();
+		 
 
 		 
 		 while ( have_posts() ) :
