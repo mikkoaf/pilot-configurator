@@ -41,7 +41,7 @@ function giveCompanyCookie(CID){
 			},
 		success : function( response ) {
 				console.log(response);
-				window.location.href = pagepath;
+				window.location.href = response;
 			}
 		});
 		

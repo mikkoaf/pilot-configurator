@@ -142,9 +142,8 @@ function company_id_cookie_set() {
 	global $wpdb;
 	$company_id = $_POST['cont'];
 	
-	$company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $company_id");
 	$urlpath = get_site_url();
-	$urlpath .= "/'$company_name'";
+	$urlpath .= "/product_information";
 	
     setcookie( 'company-identification', $company_id, time() + 3600, '/');
 	echo $urlpath;
