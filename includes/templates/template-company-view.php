@@ -25,8 +25,11 @@ get_header(); ?>
                die;
             }
          }
-         else{
+         else if ( current_user_can( 'company' ) ){
             $company_id = get_current_user_id(); 
+         }
+         else{
+            die('Access Denied!');
          }
          echo '<h1>Results for ' . get_user_by('id', $company_id)->user_nicename . '</h1>';
 
