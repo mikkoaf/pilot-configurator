@@ -27,17 +27,21 @@ jQuery(document).ready(function(event) {
 		var newpagenumber = pagenumber + 1;
 	if (newpagenumber <= maxpages + 1 ){	
 		if (pagepath.includes("school_question")) {
-			var newpage =  "https://wordpress.local/school_question" + newpagenumber; 
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/school_question" + newpagenumber;
 		}
 		if (pagepath.includes("company_question")) {
-			var newpage =  "https://wordpress.local/company_question" + newpagenumber; 
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/company_question" + newpagenumber;
 		}
 	}else {
 		if (pagepath.includes("school_question")) {
-			var newpage =  "https://wordpress.local/school_splash"; 
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/school_splash";
 		}
 		if (pagepath.includes("company_question")) {
-			var newpage =  "https://wordpress.local/company_splash"; 
+				var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/company_splash";
 		}
 		
 	}	
@@ -85,10 +89,12 @@ jQuery(document).ready(function(event) {
 		var newpagenumber = pagenumber - 1;
 		
 		if (pagepath.includes("school_question")) {
-			var newpage =  "https://wordpress.local/school_question" + newpagenumber; 
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/school_question" + newpagenumber;
 		}
-		if (pagepath.includes("company_question")) {
-			var newpage =  "https://wordpress.local/company_question" + newpagenumber; 
+		if (pagepath.includes("company_question")) {	
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/company_question" + newpagenumber;
 		}
 		
 		// This redirects the page
@@ -102,10 +108,12 @@ jQuery(document).ready(function(event) {
 		var pagepath = window.location.pathname;
 		
 		if (pagepath.includes("school_question")) {
-			var newpage =  "https://wordpress.local/school_splash"; 
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/school_splash";
 		}
 		if (pagepath.includes("company_question")) {
-			var newpage =  "https://wordpress.local/company_splash";
+			var newpage = window.location.protocol;
+			newpage = newpage + "//" + window.location.hostname + "/company_splash";
 		}
 		
 		// This redirects the page
