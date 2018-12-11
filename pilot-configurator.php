@@ -39,7 +39,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/match-algorithm.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-page-templater.php';
-
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/visufunc/visufunc.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/create-product-information.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/splashes.php';
@@ -52,6 +52,10 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'lib/helpers-ajax.php';
 
 add_shortcode( 'pilotcfg_any_splash', 'pilotcfg_any_splash' );
 add_shortcode( 'pilotcfg_questionform', 'pilotcfg_questionform' );
+
+require (dirname(__FILE__) . '/includes/pages/create-product-information.php');
+require (dirname(__FILE__) . '/includes/visufunc/createresultpage.php');
+
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
@@ -80,6 +84,8 @@ register_activation_hook (__FILE__, 'create_questionforms');
 register_activation_hook (__FILE__, 'create_splashes');
 register_activation_hook (__FILE__, 'create_product_information');
 register_deactivation_hook (__FILE__, 'remove_questionforms');
+register_activation_hook (__FILE__, 'create_results_page');
+register_deactivation_hook (__FILE__, 'remove_results');
 register_deactivation_hook (__FILE__, 'remove_splashes');
 register_deactivation_hook (__FILE__, 'remove_product_information');
 
@@ -123,7 +129,18 @@ function ajax_test_enqueue_scripts() {
 
 }
 
-function page_templater_init() {
+//Add scripts for visualising
+ function wpb_adding_scripts() {
+	 wp_register_script('chart', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.js', false);
+	 wp_register_script('chart2', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.min.js', false);
+	 wp_enqueue_script('chart');
+	 wp_enqueue_script('chart2');
+	 wp_enqueue_script('heatmap', 'https://cdn.plot.ly/plotly-latest.min.js', array(),  true);
+	 wp_enqueue_script('jquery');
+ }
+ add_action('wp_enqueue_scripts', 'wpb_adding_scripts');
+
+function page_templater_init(){
 	$page_templater = new Inno_Oppiva\Page_Templater();
 	$page_templater->init();
 }
