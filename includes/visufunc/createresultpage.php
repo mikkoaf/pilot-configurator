@@ -29,4 +29,12 @@ function create_results_page($results) {
 		);
 	}
 }
+function remove_results(){
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'posts';
+
+	$slug = 'resultpage';
+	$result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+	wp_delete_post($result[0], true);
+}
 ?>
