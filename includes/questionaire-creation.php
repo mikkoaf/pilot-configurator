@@ -10,6 +10,7 @@ function createquestinaires()	{
 	$settisets = $wpdb->get_results("SELECT DISTINCT question_set FROM wp_Questions");
 	$amount = $wpdb->num_rows;
 	$x = 1;
+	
 	foreach($settisets as $setti){
 		$name = $setti->question_set;
 		$results = $wpdb->get_results("SELECT * FROM wp_Questions WHERE question_set = '".$name."';");
@@ -24,6 +25,8 @@ function createquestinaires()	{
 		create_companyquestions($results, $x, $amount);
 		$x = $x + 1;
 	}
+	create_schoolquestions($results, $x, $amount);
+	create_companyquestions($results, $x, $amount);
 }
 
 function remove_questionaires(){

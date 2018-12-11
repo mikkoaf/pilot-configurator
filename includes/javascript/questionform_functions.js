@@ -25,7 +25,7 @@ jQuery(document).ready(function(event) {
 		var pagenumber = parseInt(pageelem.dataset.pgnumber);
 		var maxpages = parseInt(pageelem.dataset.maxpages);
 		var newpagenumber = pagenumber + 1;
-	if (newpagenumber <= maxpages ){	
+	if (newpagenumber <= maxpages + 1 ){	
 		if (pagepath.includes("school_question")) {
 			var newpage =  "https://wordpress.local/school_question" + newpagenumber; 
 		}
@@ -89,6 +89,23 @@ jQuery(document).ready(function(event) {
 		}
 		if (pagepath.includes("company_question")) {
 			var newpage =  "https://wordpress.local/company_question" + newpagenumber; 
+		}
+		
+		// This redirects the page
+		window.location.href = newpage;
+	});
+	jQuery('#end_button').click(function(e){
+		
+		/*
+		 * This whole function is a copy and paste from the above function. Refer to that if questions arise.
+		 */
+		var pagepath = window.location.pathname;
+		
+		if (pagepath.includes("school_question")) {
+			var newpage =  "https://wordpress.local/school_splash"; 
+		}
+		if (pagepath.includes("company_question")) {
+			var newpage =  "https://wordpress.local/company_splash";
 		}
 		
 		// This redirects the page
