@@ -1,6 +1,6 @@
 <?php
 
-function printPerQ($sqls, $sqlc) {
+function printPerQ($sqls, $sqlc, $cid, $sid) {
 
 //$svar1 = "SELECT school_answer_value FROM '$table' WHERE keygen=2";
 //$svar2 = "SELECT school_answer_value FROM '$table' WHERE keygen=2";
@@ -15,35 +15,35 @@ function printPerQ($sqls, $sqlc) {
 $counter = 0;
 
 
-	echo '<div style="width: 600px; height: 800px;" id="graph"></div>
+	echo '<div style="width: 600px; height: 800px;" id="graph' . json_encode($cid) . '+' . json_encode($sid) . '"></div>
 <script>
-    Plotly.plot("graph", [{
+    Plotly.plot("graph' . json_encode($cid) . '+' . json_encode($sid) . '", [{
 	displayModeBar: false,	
   type: "bar",
   name: "haluttu",
-  x:	[' . json_encode((int)$sqlc[0]->answer_max - $sqlc[0]->answer_min) . ', 
-		' . json_encode((int)$sqlc[1]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[2]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[3]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[4]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[5]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[6]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[7]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[8]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[9]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[10]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[11]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[12]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[13]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[14]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[15]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[16]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[17]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[18]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[19]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[20]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[21]->answer_max - $sqlc[1]->answer_min) . ',
-		' . json_encode((int)$sqlc[22]->answer_max - $sqlc[1]->answer_min) . '],
+  x:	[' . json_encode((int)$sqlc[0]->answer_max - $sqlc[0]->answer_min) . '+0.1, 
+		' . json_encode((int)$sqlc[1]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[2]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[3]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[4]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[5]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[6]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[7]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[8]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[9]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[10]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[11]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[12]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[13]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[14]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[15]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[16]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[17]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[18]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[19]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[20]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[21]->answer_max - $sqlc[1]->answer_min) . '+0.1,
+		' . json_encode((int)$sqlc[22]->answer_max - $sqlc[1]->answer_min) . '+0.1],
   base:	[' . json_encode((int)$sqlc[0]->answer_min) . '-0.05, 
 		' . json_encode((int)$sqlc[1]->answer_min) . '-0.05,
 		' . json_encode((int)$sqlc[2]->answer_min) . '-0.05,

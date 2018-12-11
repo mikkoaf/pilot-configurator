@@ -1,7 +1,7 @@
 <?php
 
-function printRadar($num1, $num2, $num3, $num4, $num5) {
-
+function printRadary($num1, $num2, $num3, $num4, $num5) {
+$hiddennum = 100;
 $var1 = 14;
 $var5 = 14;
 $var4 = 45;
@@ -12,11 +12,12 @@ $counter = 0;
 
 	echo '<div style="width: 400px; height: 400px;"><canvas id="myChart' . json_encode($num1+$num2) . '" width="50px" height="50px"></canvas></div>
 	<script>
-	var num1 = ' . json_encode($var1) . ';
-	var num2 = ' . json_encode($var2) . ';
-	var num3 = ' . json_encode($var3) . ';
-	var num4 = ' . json_encode($var4) . ';
-	var num5 = ' . json_encode($var5) . ';
+	var hiddennum = ' . json_encode($hiddennum) . ';
+	var num1 = ' . json_encode($num1) . ';
+	var num2 = ' . json_encode($num2) . ';
+	var num3 = ' . json_encode($num3) . ';
+	var num4 = ' . json_encode($num4) . ';
+	var num5 = ' . json_encode($num5) . ';
 	var ctx = document.getElementById("myChart' . json_encode($num1+$num2) . '");
 	var myChart = new Chart(ctx, {
 		type: "radar",

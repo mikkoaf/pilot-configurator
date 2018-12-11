@@ -12,6 +12,16 @@
 //Show first set of results
 //Todo: add CID and SID as parameters
 
+function printeach() {
+	global $wpdb;
+	$scids = $wpdb->get_results("SELECT DISTINCT school_id, company_id FROM wp_School_answer");
+	$i = 0;
+	foreach ($scids as $results) {
+		showresulttest2((int)$results->company_id, (int)$results->school_id);
+		radarchart((int)$results->company_id, (int)$results->school_id);
+	}
+}
+
 function showResults($sid, $cid) {
 	global $wpdb;
 	$sqls = $wpdb->get_results("SELECT * FROM wp_School_answer WHERE school_id=$school_id AND company_id=$company_id");
@@ -39,14 +49,12 @@ function showresulttest() {
 	printCharts(4, $sql);
 
 }
-function showresulttest2() {
+function showresulttest2($cid, $sid) {
 	//filldata();
 	global $wpdb;
-	$cid = 2;
-	$sid = 6;
 	$sqls = $wpdb->get_results("SELECT answer_val FROM wp_School_answer WHERE school_id=$sid AND company_id=$cid");
 	$sqlc = $wpdb->get_results("SELECT answer_min, answer_max FROM wp_Company_answer WHERE company_id=$cid");
-	printCharts(4, $sqls, $sqlc);
+	printCharts(4, $sqls, $sqlc, $cid, $sid);
 }
 
 //Show more, in-depth results
@@ -80,11 +88,9 @@ function radartester() {
 	
 }
 //Test numbers for radarchart
-function radartest () {
-	filldata();
+function radarchart ($cid, $sid) {
+	include_once 'visually_radarchart3.php';
 	global $wpdb;
-	$cid = 3;
-	$sid = 5;
 	
 	$category1 = getdb(1, $cid, $sid);
 	$category2 = getdb(2, $cid, $sid);
@@ -92,11 +98,7 @@ function radartest () {
 	$category4 = getdb(4, $cid, $sid);
 	$category5 = getdb(5, $cid, $sid);
 	
-	echo $category1;
-	echo $category2;
-	echo $category3;
-	echo $category4;
-	echo $category5;
+	echo printRadar($category1, $category2, $category3, $category4, $category5, $cid, $sid);
 }
 
 //called when calculating match% for category
@@ -105,23 +107,23 @@ function getdb($cat, $cid, $sid) {
 	global $wpdb;
 	$qidmin = 0;
 	$qidmax = 0;
-	if ($cat = 1) {
+	if ($cat == 1) {
 		$qidmin = 1;
 		$qidmax = 5;
 	}
-	elseif ($cat = 2) {
+	elseif ($cat == 2) {
 		$qidmin = 6;
 		$qidmax = 10;
 	}
-	elseif ($cat = 3) {
+	elseif ($cat == 3) {
 		$qidmin = 11;
 		$qidmax = 15;
 	}
-	elseif ($cat = 4) {
+	elseif ($cat == 4) {
 		$qidmin = 16;
 		$qidmax = 20;
 	}
-	elseif ($cat = 5) {
+	elseif ($cat == 5) {
 		$qidmin = 21;
 		$qidmax = 23;
 	}
@@ -141,7 +143,7 @@ function getdb($cat, $cid, $sid) {
 
 }
 
-function printCharts($chart, $sqls, $sqlc) {
+function printCharts($chart, $sqls, $sqlc, $cid, $sid) {
 	include_once 'visually_bargraph.php';
 	include_once 'visually_heatmap.php';
 	include_once 'visually_radarchart.php';
@@ -158,7 +160,7 @@ function printCharts($chart, $sqls, $sqlc) {
 		echo printRadar(41, 10, 15, 16, 40);
 	}
 	elseif ($chart == 4) {
-		echo printPerQ($sqls, $sqlc);
+		echo printPerQ($sqls, $sqlc, $cid, $sid);
 	}
 	
 }

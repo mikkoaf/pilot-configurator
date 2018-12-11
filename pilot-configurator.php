@@ -79,6 +79,10 @@ function inno_oppiva_init() {
   $inno_oppiva_login->init();
 }
 
+//Create quick resultpage
+require (dirname(__FILE__) . '/includes/visufunc/createresultpage.php');
+register_activation_hook (__FILE__, 'create_results_page');
+
 require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 
