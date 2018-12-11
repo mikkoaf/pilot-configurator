@@ -33,7 +33,6 @@ get_header(); ?>
 		 $content = ob_get_contents(); 
          ob_end_clean();
 		 
-
 		 
 		 while ( have_posts() ) :
 				the_post();

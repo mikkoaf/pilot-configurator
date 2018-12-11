@@ -46,6 +46,7 @@ require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
 require (dirname(__FILE__) . '/includes/pages/create-product-information.php');
 
+
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');
 
