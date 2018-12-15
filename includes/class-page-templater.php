@@ -73,8 +73,8 @@ if ( ! class_exists('Page_Templater') ) {
 
          // Add your templates to this array.
          $this->templates = array(
-            'templates/template-company-view.php' => 'Company View',
-			'templates/template-company-information.php' => 'Company Information'
+            'templates/template-view-results.php' => 'View Results',
+			   'templates/template-company-information.php' => 'Company Information'
          );
 
       } 

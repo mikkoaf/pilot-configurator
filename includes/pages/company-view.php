@@ -17,7 +17,7 @@ function create_company_view() {
 				'post_content'		=>	'',
 				'post_status'		=>	'publish',
 				'post_type'			=>	'page',
-				'page_template'	=> 'templates/template-company-view.php'
+				'page_template'	=> 'templates/template-view-results.php'
 			)
 		);
 	}
