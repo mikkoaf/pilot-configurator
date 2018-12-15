@@ -7,9 +7,10 @@ function pilot_admin_page_html() {
   ?>
   <div class="wrap">
     <h1>Ylläpitäjän työkalut</h1>
+
     <form name="post" action="/view_results" method="post">
       <fieldset>
-        <legend><h2>Tulosten katsaus</h2></legend>
+        <legend><h2>Yritysten tulosten katsaus</h2></legend>
         <p>
           <label>Valitse yritys</label>
           <select name="company_view_for_admin">
@@ -24,17 +25,36 @@ function pilot_admin_page_html() {
           </select>
         </p>
       </fieldset>
-      <input type="submit" value="Tuloksiin" >
+      <input type="submit" value="Yrityksen tuloksiin" >
+    </form>
+
+    <form name="post" action="/view_results" method="post">
+      <fieldset>
+        <legend><h2>Koulujen tulosten katsaus</h2></legend>
+        <p>
+          <label>Valitse koulu</label>
+          <select name="school_view_for_admin">
+
+            <?php
+            $schools = get_users( array('role' => 'school') );
+            foreach($schools as $school){
+              echo '<option value="' . $school->ID . '">' . $school->data->user_login . '</option>';
+            }
+            ?>
+
+          </select>
+        </p>
+      </fieldset>
+      <input type="submit" value="Koulun tuloksiin" >
     </form>
 
 
     <h1>Ylläpito asetukset</h1>
     <form action="options.php" method="post">
       <?php
-            settings_fields('pilot_configurator_settings');
-            do_settings_sections('pilot_configurator');
-            
-            submit_button('Tallenna asetukset');
+         settings_fields('pilot_configurator_settings');
+         do_settings_sections('pilot_configurator');
+         submit_button('Tallenna asetukset');
       ?>
     </form>
   </div>
