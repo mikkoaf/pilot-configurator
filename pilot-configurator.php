@@ -41,10 +41,11 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/match-algorithm.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-page-templater.php';
 
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/splashes.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/create-product-information.php';
 
 require (dirname(__FILE__) . '/includes/questionaire-creation.php');
-require (dirname(__FILE__) . '/includes/splash_creation/create_splash.php');
-require (dirname(__FILE__) . '/includes/pages/create-product-information.php');
+
 
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
