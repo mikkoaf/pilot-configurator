@@ -47,16 +47,22 @@ if ( ! class_exists('Inno_Oppiva_Login') ) {
       $table_name = $wpdb->prefix . 'posts';
   
       if ( user_can( $user, 'company' ) ){
-          $slug = 'company_splash';
-          $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
-          wp_redirect(get_permalink($result[0]));
-          exit;
+        $slug = 'company_splash';
+        $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+        wp_redirect(get_permalink($result[0]));
+        exit;
       }
-      else if (user_can( $user, 'school') ){
-          $slug = 'school_splash';
-          $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
-          wp_redirect(get_permalink($result[0]));
-          exit;
+      else if ( user_can( $user, 'school' ) ){
+        $slug = 'school_splash';
+        $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+        wp_redirect(get_permalink($result[0]));
+        exit;
+      }
+      else if ( !user_can( $user, 'administrator') ){
+        $slug = 'new_user_splash';
+        $result = $wpdb->get_row("SELECT ID FROM " . $table_name . " WHERE post_name='" . $slug . "'", 'ARRAY_N');
+        wp_redirect(get_permalink($result[0]));
+        exit;
       }
 
     }
