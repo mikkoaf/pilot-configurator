@@ -9,9 +9,9 @@ function create_splashes(){
 	$link = 'TODO';
 	
 	ob_start();
-		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
-				<p>Alle on listattuna tuotteet joiden kyselyihin voitte vastata:</p>
-				<span id="company_list">Tähän pitäisi tulla vastanneet userit</span>';
+		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p> '.
+				'<p>Alle on listattuna tuotteet joiden kyselyihin voitte vastata:</p> '.
+				'<span id="company_list">Tähän pitäisi tulla vastanneet userit</span>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
@@ -24,7 +24,8 @@ function create_splashes(){
 			'post_title'		=>	$title,
 			'post_content'		=>	$content,
 			'post_status'		=>	'publish',
-			'post_type'			=>	'page'
+			'post_type'			=>	'page',
+			'page_template'	=> 'templates/template-school-only.php'
 		)
 	);
 	
@@ -33,9 +34,9 @@ function create_splashes(){
 	$link = home_url( '/company_question1/', 'https' );
 
 	ob_start();
-		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
-				<p>Jos käytät järjestelmää ensimmäistä kertaa, toivomme että vastaisitte kyselylomakkeisiin alla olevasta linkistä:</p>
-				<a href="'.$link.'">Kyselylomakkeisiin</a>';
+		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p> '.
+				'<p>Jos käytät järjestelmää ensimmäistä kertaa, toivomme että vastaisitte kyselylomakkeisiin alla olevasta linkistä:</p> '.
+				'<a href="'.$link.'">Kyselylomakkeisiin</a>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
@@ -48,7 +49,8 @@ function create_splashes(){
 			'post_title'		=>	$title,
 			'post_content'		=>	$content,
 			'post_status'		=>	'publish',
-			'post_type'			=>	'page'
+			'post_type'			=>	'page',
+			'page_template'	=> 'templates/template-company-only.php'
 		)
 	);
 
@@ -56,10 +58,10 @@ function create_splashes(){
 	$slug = 'new_user_splash';
 
 	ob_start();
-		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
-				<p>Sinulle ei vielä ole annettu järjestelmän omaa roolia, joten et voi käyttää kaikkia palvelun toimintoja</p>
-				<p>Odottaessasi ylläpidon toimia, voisit kertoa profiilissa itsestäsi</p>
-				<p>Palvelu tulee hyödyntämään kyseistä tietoa näyttäessäsi organisaatiotanne</p>';
+		echo '<p>Tervetuloa Inno-oppiva järjestelmään</p> '.
+				'<p>Sinulle ei vielä ole annettu järjestelmän omaa roolia, joten et voi käyttää kaikkia palvelun toimintoja</p> '.
+				'<p>Odottaessasi ylläpidon toimia, voisit kertoa profiilissa itsestäsi</p> '.
+				'<p>Palvelu tulee hyödyntämään kyseistä tietoa näyttäessäsi organisaatiotanne</p>';
 	$content = ob_get_contents(); 
 	ob_end_clean();
 	
