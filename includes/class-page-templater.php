@@ -74,7 +74,9 @@ if ( ! class_exists('Page_Templater') ) {
          // Add your templates to this array.
          $this->templates = array(
             'templates/template-view-results.php' => 'View Results',
-			   'templates/template-company-information.php' => 'Company Information'
+			'templates/template-company-information.php' => 'Company Information',
+			'templates/template-school-questionforms.php' => 'School-questionform',
+			'templates/template-company-questionforms.php' => 'Company-questionform'
          );
 
       } 
