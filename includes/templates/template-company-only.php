@@ -5,33 +5,30 @@
  * and only company and administrator users are allowed
  */
 
-get_header(); ?>
+get_header(); 
+if ( !current_user_can( 'company') && !current_user_can( 'administrator') ){
+   echo 'Access Denied!';
+   get_footer();
+   die();
+}
+?>
 
 <div class="wrap">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
 			<?php
+			while ( have_posts() ) : the_post();
 
-         if ( current_user_can( 'company') || current_user_can( 'administrator') ){
+				get_template_part( 'template-parts/page/content', 'page' );
 
-            while ( have_posts() ) : the_post();
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
 
-               get_template_part( 'template-parts/page/content', 'page' );
-
-               // If comments are open or we have at least one comment, load up the comment template.
-               if ( comments_open() || get_comments_number() ) :
-                  comments_template();
-               endif;
-
-            endwhile; // End of the loop.
-
-         }
-         else{
-            echo 'Access Denied!';
-         }
-
-         ?>
+			endwhile; // End of the loop.
+			?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
