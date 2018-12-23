@@ -44,6 +44,10 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/splashes.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/create-product-information.php';
 
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/shortcodes/splash-screen-shortcode.php';
+
+add_shortcode( 'pilotcfg_any_splash', 'pilotcfg_any_splash' );
+
 require (dirname(__FILE__) . '/includes/questionaire-creation.php');
 
 
@@ -102,19 +106,19 @@ function ajax_test_enqueue_scripts() {
 	wp_localize_script( 'slidersown', 'ownmainsliders', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 	// The script for questionform button functions
 	wp_enqueue_script( 'questionform_functions', plugins_url( 'includes/javascript/questionform_functions.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'questionform_functions', 'questionFormFunctions', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 	//The script for listing the company products in school splash screens
 	wp_enqueue_script( 'companyLister', plugins_url( 'includes/javascript/companyLister.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'companyLister', 'company_lister', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	
+
 }
 
 function page_templater_init(){
