@@ -8,7 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function pilotcfg_any_splash( $atts = [], $content = null, $tag = 'pilotcfg_any_splash' ) {
   if ( !is_user_logged_in() ){
-    wp_redirect( wp_login_url() );
+    $link = home_url( '/wp-login.php/', 'https' );
+    echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
+    <p>Sinun tulee kirjautua järjestelmään käyttääksesi tätä sivua</p>
+    <a href="' . $link . '">Kirjautumiseen</a>';
+    die();
   }
 
   ob_start();
