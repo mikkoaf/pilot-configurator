@@ -31,7 +31,7 @@ function pilotcfg_any_splash( $atts = [], $content = null, $tag = 'pilotcfg_any_
   }
 
   if ( current_user_can( 'company') || current_user_can( 'administrator') ){
-    $link = home_url( '/company_question1/', 'https' );
+    $link = home_url( '/company_question0/', 'https' );
     $results_link = home_url( '/view_results/', 'https' );
     echo '<p>Tervetuloa Inno-oppiva järjestelmään</p><p>Jos käytät järjestelmää ensimmäistä kertaa, toivomme että vastaisitte kyselylomakkeisiin alla olevasta linkistä:</p>
          <a href="' . $link . '">Kyselylomakkeisiin</a>
