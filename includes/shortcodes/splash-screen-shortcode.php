@@ -7,12 +7,19 @@ if ( ! defined( 'ABSPATH' ) ) {
   error_log('Shortcodes added');
 
 function pilotcfg_any_splash( $atts = [], $content = null, $tag = 'pilotcfg_any_splash' ) {
-  if ( !is_user_logged_in() ){
-    wp_redirect( wp_login_url() );
+  if ( !is_user_logged_in() || current_user_can( 'administrator' ) ){
+    $link = home_url( '/wp-login.php/', 'https' );
+    echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
+    <p>Sinun tulee kirjautua järjestelmään käyttääksesi tätä sivua</p>
+    <p><a href="' . $link . '">Kirjautumiseen</a></p>';
   }
 
+  if ( current_user_can( 'administrator') ){
+    echo '<br>';
+ }
+
   ob_start();
-  if ( ( !current_user_can( 'company') && !current_user_can('school') || current_user_can( 'administrator') ) ){
+  if ( is_user_logged_in() && ( !current_user_can( 'company') && !current_user_can('school') || current_user_can( 'administrator') ) ){
      echo '<p>Tervetuloa Inno-oppiva järjestelmään</p>
       <p>Sinulle ei vielä ole annettu järjestelmän omaa roolia, joten et voi käyttää kaikkia palvelun toimintoja</p>
       <p>Odottaessasi ylläpidon toimia, voisit kertoa profiilissa itsestäsi</p>
