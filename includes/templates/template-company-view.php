@@ -32,7 +32,7 @@ get_header(); ?>
             die('Access Denied!');
          }
          echo '<h1>' . get_user_by('id', $company_id)->user_nicename . ' tulokset</h1>';
-
+		include_once PILOT_CONFIGURATOR_DIR_PATH . 'includes/visufunc/visufunc.php';
          $company_answer_table = $wpdb->prefix . 'Company_answer';
          $school_answer_table = $wpdb->prefix . 'School_answer';
 
@@ -88,8 +88,11 @@ get_header(); ?>
                $school_name = get_user_by('id', $school_id)->user_nicename;
                
                $match = match_alg($query_result_organized[$school_id]);
-               echo '<details><summary>' . $school_name . ' ' . $match . '%</summary> .
-                     <span id=more_' . $school_id . '><p>hey</p></span></details>';
+                echo '
+			
+			
+					<details class = "results" data-cid="'.$company_id.'" data-sid="'.$school_id.'"><summary>' . $school_name . ' ' . $match . '%</summary>
+                  <span id="' . $school_id . '"></span></details>';
             }
          }
          $company_view_content = ob_get_contents(); 
