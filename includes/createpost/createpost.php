@@ -84,7 +84,8 @@ function create_companyquestions($results, $pagenbr, $maxpages) {
 		ob_start();
 		echo '<h1>Lyhyet ohjeet kysymyksiin:</h1>';
 		echo '<p>Seuraavilla sivuilla tulet näkemään '.$maxpages.' joukkoa kysymyksiä.</p>';
-		echo '<p>Näissä kysymyksissä on kaksi kohtaa. Ensimmäisenä on vierityspalkki jossa kaksi palloa, näiden avulla voitte määrittää kyseiselle väitteelle numerovälin. Tämä väli on se jonka sisään toivotte koulun vastaavan.</p>';
+		echo '<p>Näissä kysymyksissä on kaksi kohtaa. Ensimmäisenä on vierityspalkki jossa kaksi palloa, näiden avulla voitte määrittää kysymykselle <b>miniarvon</b> (ensimmäinen pallo), kysymyksen <b>hyväksyttävä arvo</b> (kahden pallon välinen alue) sekä kysymyksen <b>toivottu arvo</b></p>';
+		echo '<p><b>Minimiarvolla</b> kysymys ei tuota pisteitä yhteensopivuuslaskelmiin.<br><b>Hyväksyttävä arvo</b> tuottaa osan pisteistä yhteensopivuuslaskelmiin.<br><b>Toivottu arvo</b> tuottaa täydet pisteet yhteensopivuuslaskelmiin';
 		echo '<p>Seuraava vierityspalkki on pienempi. Sen avulla voitte määrittää kuinka tärkeä kyseinen kysymys on teidän tuotteellenne. Mitä tärkeämpi se on, sitä enemmän kyseinen kysymys vaikuittaa yhteensopivuuslaskelmiin.</p>';
 		echo '<input type="button" onclick="location.href=\''.$link.'\';" value="Kysymyksiin" />';
 		$content = ob_get_contents(); 

@@ -287,8 +287,8 @@
 .slider-tick {
   position: absolute;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 0px;
+  height: 0px;
   background-image: -webkit-linear-gradient(top, #f9f9f9 0%, #f5f5f5 100%);
   background-image: -o-linear-gradient(top, #f9f9f9 0%, #f5f5f5 100%);
   background-image: linear-gradient(to bottom, #f9f9f9 0%, #f5f5f5 100%);
@@ -300,7 +300,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   filter: none;
-  opacity: 0.8;
+  opacity: 100;
   border: 0px solid transparent;
 }
 .slider-tick.round {
@@ -325,4 +325,13 @@
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ac1ef', endColorstr='#ff82b3de', GradientType=0);
   opacity: 1;
+}
+#comDS .slider-selection {
+	background: yellow;
+}
+#comDS .slider-track-high {
+	background: green;
+}
+#comDS .slider-track-low {
+	background: red;
 }

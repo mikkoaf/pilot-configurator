@@ -27,8 +27,8 @@ jQuery( document ).ready(function($) {
 		 while(x == 0){
 			if ( $( companyDS ).length ) {
 		 
-				$(companyDS).slider({ min: 1, max: 5, value: [1, 5], ticks:[1, 2, 3, 4, 5], ticks_labels: ["Eri mieltä", "", "", "", "Samaa mieltä"], focus: true,});
-				$(companySS).slider({ ticks:[1, 2, 3], ticks_labels: ["Ei tärkeä", "Tärkeä", "Hyvin Tärkeä"], tooltip: "hide", value: 2});
+				$(companyDS).slider({ id: "comDS", min: 1, max: 5, value: [1, 5], ticks:[1, 2, 3, 4, 5], ticks_labels: ["Eri mieltä", "", "", "", "Samaa mieltä"], focus: true,});
+				$(companySS).slider({ class: "comSS", ticks:[1, 2, 3], ticks_labels: ["Ei tärkeä", "Tärkeä", "Hyvin Tärkeä"], tooltip: "hide", value: 2});
 
 			}
 			else{
