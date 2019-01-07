@@ -131,14 +131,24 @@ function ajax_test_enqueue_scripts() {
 
 //Add scripts for visualising
  function wpb_adding_scripts() {
+	 	 wp_enqueue_script('jquery');
 	 wp_register_script('chart', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.js', false);
 	 wp_register_script('chart2', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.min.js', false);
+	  wp_register_script('ajaxy', plugin_dir_url(__FILE__) . '/includes/templates/visuajax.js',  array('jquery'), false);
+	  	 wp_enqueue_script('ajaxy');
 	 wp_enqueue_script('chart');
 	 wp_enqueue_script('chart2');
 	 wp_enqueue_script('heatmap', 'https://cdn.plot.ly/plotly-latest.min.js', array(),  true);
-	 wp_enqueue_script('jquery');
+	 
+	  wp_enqueue_script( 'visuajax', plugins_url( 'includes/templates/visuajax.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_localize_script( 'visuajax', 'visuAjax', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+	));
+
  }
  add_action('wp_enqueue_scripts', 'wpb_adding_scripts');
+ //Ajax helpers
+  add_action('wp_ajax_printradarchart', 'printradarchart');
 
 function page_templater_init(){
 	$page_templater = new Inno_Oppiva\Page_Templater();

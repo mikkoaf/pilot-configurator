@@ -12,6 +12,14 @@
 //Show first set of results
 //Todo: add CID and SID as parameters
 
+function printradarchart() {
+	global $wpdb;
+	$cid = $_POST['cid'];
+	$sid = $_POST['sid'];
+	//Echossa pitäisi olla chartti, mutta tulosta ei tule, tulostaa vain numerot.
+	echo 111;
+}
+
 function printeach() {
 	global $wpdb;
 	$scids = $wpdb->get_results("SELECT DISTINCT school_id, company_id FROM wp_School_answer");
