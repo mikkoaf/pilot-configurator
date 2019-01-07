@@ -9,8 +9,11 @@ function createquestinaires()	{
 	require_once (dirname(__FILE__) . '/createpost/createpost.php');
 	$settisets = $wpdb->get_results("SELECT DISTINCT question_set FROM wp_Questions");
 	$amount = $wpdb->num_rows;
-	$x = 1;
+	$x = 0;
 	
+	create_schoolquestions(0, $x, $amount);
+	create_companyquestions(0, $x, $amount);
+	$x = $x + 1;
 	foreach($settisets as $setti){
 		$name = $setti->question_set;
 		$results = $wpdb->get_results("SELECT * FROM wp_Questions WHERE question_set = '".$name."';");
