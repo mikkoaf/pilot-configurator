@@ -1,18 +1,17 @@
 <?php
 function jal_install() {
 	global $wpdb;
-	
+
 	$table_name1 = $wpdb->prefix . 'users';
 
 	$table_name2 = $wpdb->prefix . 'Questions';
-	
+
 	$table_name3 = $wpdb->prefix . 'Company_answer';
-	
+
 	$table_name4 = $wpdb->prefix . 'School_answer';
-	
+
 	$charset_collate = $wpdb->get_charset_collate();
-	
-	
+
 	$sql = "CREATE TABLE IF NOT EXISTS $table_name2(
 		question_id INT(3) NOT NULL AUTO_INCREMENT,
 		question_set INT(1) NOT NULL,
@@ -33,7 +32,7 @@ function jal_install() {
 		PRIMARY KEY (company_answer_id)
 		)$charset_collate;";
 
-	$sql2 =	"CREATE TABLE IF NOT EXISTS $table_name4(
+	$sql2 = "CREATE TABLE IF NOT EXISTS $table_name4(
 		school_answer_id INT(3) NOT NULL AUTO_INCREMENT,
 		school_id BIGINT(20) UNSIGNED NOT NULL,
 		question_id INT(3) NOT NULL,
@@ -45,7 +44,7 @@ function jal_install() {
 		FOREIGN KEY (company_id) REFERENCES $table_name1 (ID), 
 		PRIMARY KEY (school_answer_id)
 		)$charset_collate;";
-		
+
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
 	dbDelta( $sql1 );
@@ -53,9 +52,9 @@ function jal_install() {
 
 	// Test if questions already exist in (old version of) Questions table
 	$test = $wpdb->get_results("SELECT * FROM $table_name2");
-	if(count($test) == 0){
-		$wpdb->query(
-		  "INSERT INTO wp_Questions VALUES
+  if ( count($test) == 0 ) {
+      $wpdb->query(
+        "INSERT INTO wp_Questions VALUES
 		  (NULL, 1, 'Opettajilla on käsitys opetusta tukevista sovelluksista ja teknologioista', 'Ihmiset ja organisaatio'),
 		  (NULL, 1, 'Opettajat toimivat käyttäjinä ja sisällöntuottajina', 'Ihmiset ja organisaatio'),
 		  (NULL, 1, 'Opettajat saavat tukea sovellusten käyttöön', 'Ihmiset ja organisaatio'),
@@ -80,7 +79,7 @@ function jal_install() {
 		  (NULL, 5, 'Kehittämisstrategian toteuttamisella on koulun johdon tuki', 'Strategia'),
 		  (NULL, 5, 'Koululla on toimintasuunnitelma sähköisen opetusympäristön kehittämiseen', 'Strategia')
 		  "
-		);
-	}
+      );
+  }
 }
-?>
+
