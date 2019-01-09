@@ -16,8 +16,8 @@ function pilot_admin_page_html() {
           <select name="company_view_for_admin">
 
             <?php
-            $companies = get_users( array('role' => 'company') );
-            foreach($companies as $company){
+            $companies = get_users( array( 'role' => 'company' ) );
+            foreach ( $companies as $company ) {
               echo '<option value="' . $company->ID . '">' . $company->data->user_login . '</option>';
             }
             ?>
@@ -36,8 +36,8 @@ function pilot_admin_page_html() {
           <select name="school_view_for_admin">
 
             <?php
-            $schools = get_users( array('role' => 'school') );
-            foreach($schools as $school){
+            $schools = get_users( array( 'role' => 'school' ) );
+            foreach ( $schools as $school ) {
               echo '<option value="' . $school->ID . '">' . $school->data->user_login . '</option>';
             }
             ?>
@@ -82,14 +82,14 @@ function pilot_admin_page_settings_init() {
   );
 
   // create the 'settings_priority_section' section
-  function settings_priority_section_cb($args) {
+  function settings_priority_section_cb( $args ) {
     ?>
     <p><?php esc_html_e('Painoarvot kysymysten tärkeydelle', 'pilot_configurator'); ?></p>
     <?php
   }
 
   // create the 'settings_security_section' section
-  function settings_security_section_cb($args) {
+  function settings_security_section_cb( $args ) {
     ?>
     <p><?php esc_html_e('Ylläpidon tietoturva asetukset', 'pilot_configurator'); ?></p>
     <?php
@@ -146,6 +146,5 @@ function pilot_admin_page_settings_init() {
     $options = get_option('inno_oppiva_priorities');
     echo "<input id='inno_oppiva_secret' name='inno_oppiva_priorities[3]' size='3' type='number' step='1' value='{$options['3']}' />";
   }
-  
-  
+
 }
