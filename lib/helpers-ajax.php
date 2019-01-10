@@ -122,3 +122,21 @@ function company_question_insert() {
   }
 	die();
 }
+function back_button_function(){
+	
+	if( isset($_COOKIE['qform_pagenumber']) ){
+		$cookieVal = $_COOKIE['qform_pagenumber'];
+		if($cookieVal > 0){
+			$cookieVal = $cookieVal - 1;
+			setcookie('qform_pagenumber', $cookieVal, time() + 3600, '/');
+			echo '1';
+		}
+		else{
+			echo '0';
+		}
+	}
+	else{
+		echo '0';
+	}
+	
+}
