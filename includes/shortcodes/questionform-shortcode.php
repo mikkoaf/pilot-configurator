@@ -45,19 +45,16 @@ function school_questions( $results, $pagenbr, $maxpages ) {
   $qst_nmbr = 1;
   if ( $pagenbr == 0 ) {
       $title = 'Kysymys info';
-      ob_start();
       echo '<h1>Lyhyet ohjeet kysymyksiin:</h1>';
       echo '<p>Seuraavilla sivuilla tulet näkemään ' . $maxpages . ' joukkoa kysymyksiä.</p>';
       echo '<p>Nämä näihin kysymyksiin vastataan asteikolla 1 - 5 jossa 5 tarkoittaa että mielestänne väite vastaa koulunne kykyjä ja 1 että väite ei ole koulunne vahvuuksia.</p>';
       echo '<p>Voitte antaa myös kommennttilaatikkoon lisäinfoa jos näette sen tarpeelliseksi, tämä ei ole pakollista</p>';
       echo '<input type="button" onclick="location.href=\'' . $link . '\';" value="Kysymyksiin" />';
-      $content = ob_get_contents();
-      ob_end_clean();
+      
       set_transient( $transient_name, $pagenbr + 1 );
   } else {
     if ( $pagenbr <= $maxpages ) {
 
-        ob_start();
         echo 'Kysymykset ' . $pagenbr . '/' . $maxpages . '';
         echo '<form id="schoolQuestForm" class="questionForm" data-maxpages="' . $maxpages . '"  data-pgnumber="' . $pagenbr . '">';
       foreach ( $results as $row ) {
@@ -73,10 +70,7 @@ function school_questions( $results, $pagenbr, $maxpages ) {
       }
         echo '<input type="submit" value="Seuraava"></input></form>';
 
-        $content = ob_get_contents();
-        ob_end_clean();
     } else {
-        ob_start();
         $title = 'Kiitokset';
         echo '<p>Kiitos vastauksista kysymyksiin</p>';
         echo '<p>Voitte jatkaa vastaamista valitsemalla toisen tuotteen alta:</p>';
@@ -88,7 +82,6 @@ function school_questions( $results, $pagenbr, $maxpages ) {
   echo "something";
   echo $pagenbr;
   echo $maxpages;
-  return ob_get_clean();
 }
 
 function company_questions( $results, $pagenbr, $maxpages  ) {
@@ -98,7 +91,6 @@ function company_questions( $results, $pagenbr, $maxpages  ) {
 
   if ( $pagenbr == 0 ) {
       $title = 'Kysymys info';
-      ob_start();
       echo '<h1>Lyhyet ohjeet kysymyksiin:</h1>';
       echo '<p>Seuraavilla sivuilla tulet näkemään ' . $maxpages . ' joukkoa kysymyksiä.</p>';
       echo '<p>Näissä kysymyksissä on kaksi kohtaa. Ensimmäisenä on vierityspalkki jossa kaksi palloa, näiden avulla voitte määrittää kysymykselle <b>miniarvon</b> (ensimmäinen pallo), kysymyksen <b>hyväksyttävä arvo</b> (kahden pallon välinen alue) sekä kysymyksen <b>toivottu arvo</b></p>';
@@ -107,7 +99,6 @@ function company_questions( $results, $pagenbr, $maxpages  ) {
       echo '<input type="button" onclick="location.href=\'' . $link . '\';" value="Kysymyksiin" />';
   } else {
     if ( intval($pagenbr) <= intval($maxpages) ) {
-        ob_start();
         echo 'Kysymykset ' . $pagenbr . '/' . $maxpages . '';
         echo '<form id="companyQuestForm" class="questionForm" data-maxpages="' . $maxpages . '" data-pgnumber="' . $pagenbr . '">';
       foreach ( $results as $row ) {
@@ -123,12 +114,10 @@ function company_questions( $results, $pagenbr, $maxpages  ) {
       }
         echo '<input type="submit" value="Seuraava"></input></form>';
     } else {
-        ob_start();
         $title = 'Kiitokset';
         echo '<p>Kiitos vastauksista kysymyksiin</p>';
         echo '<p>Voitte palata etusivulle painamalla alla olevaa nappia</p>';
         echo '<input type="button" id="end_button" value="Etusivulle"></input>';
     }
   }
-  return ob_get_clean();
 }
