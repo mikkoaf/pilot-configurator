@@ -13,6 +13,11 @@ function pilotcfg_any_splash( $atts = [], $content = null, $tag = 'pilotcfg_any_
     <p><a href="' . $link . '">Kirjautumiseen</a></p>';
   }
 
+  if ( is_user_logged_in() ){
+    $transient_name = wp_get_current_user()->user_login . '-formpagenbr';
+    set_transient( $transient_name, 0 );
+  }
+
   if ( current_user_can( 'administrator') ) {
     echo '<br>';
   }
