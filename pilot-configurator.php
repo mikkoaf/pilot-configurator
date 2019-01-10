@@ -89,7 +89,7 @@ add_action('wp_ajax_list_active_companies', 'list_active_companies');
 add_action('wp_ajax_school_question_insert', 'school_question_insert');
 add_action('wp_ajax_company_question_insert', 'company_question_insert');
 add_action('wp_ajax_company_id_cookie_set', 'company_id_cookie_set');
-
+add_action('wp_ajax_back_button_function', 'back_button_function');
 
 register_activation_hook (__FILE__, 'ajax_test_enqueue_scripts');
 add_action( 'wp_enqueue_scripts', 'ajax_test_enqueue_scripts');

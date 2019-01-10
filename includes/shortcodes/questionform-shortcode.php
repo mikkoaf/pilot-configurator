@@ -73,15 +73,10 @@ function school_questions( $results, $pagenbr, $maxpages ) {
     } else {
         $title = 'Kiitokset';
         echo '<p>Kiitos vastauksista kysymyksiin</p>';
-        echo '<p>Voitte jatkaa vastaamista valitsemalla toisen tuotteen alta:</p>';
-        echo '<span id="company_list"> </span>';
-        echo '<p>Voitte myös palata takaisin aloitussivulle painamalla alla olevaa nappia</p>';
+        echo '<p>Voitte palata takaisin aloitussivulle painamalla alla olevaa nappia</p>';
         echo '<input type="button" id="end_button" value="Etusivulle"></input>';
     }
   }
-  echo "something";
-  echo $pagenbr;
-  echo $maxpages;
 }
 
 function company_questions( $results, $pagenbr, $maxpages  ) {

@@ -45,10 +45,6 @@ function company_id_cookie_set() {
 function school_question_insert() {
 	global $wpdb;
 
-  $transient_name = wp_get_current_user()->user_login . '-formpagenbr';
-  $pagenbr = get_transient( $transient_name ) + 1;
-  set_transient( $transient_name, $pagenbr );
-
 	parse_str($_POST['cont'], $newarray);
 	$uid = get_current_user_id();
 	$cookieVal = $_COOKIE['company-identification'];
@@ -88,10 +84,6 @@ function school_question_insert() {
 function company_question_insert() {
 	global $wpdb;
 
-  $transient_name = wp_get_current_user()->user_login . '-formpagenbr';
-  $pagenbr = get_transient( $transient_name ) + 1;
-  set_transient( $transient_name, $pagenbr );
-
 	parse_str($_POST['cont'], $newarray);
 	$uid = get_current_user_id();
 
@@ -124,11 +116,14 @@ function company_question_insert() {
 }
 function back_button_function(){
 	
-	if( isset($_COOKIE['qform_pagenumber']) ){
-		$cookieVal = $_COOKIE['qform_pagenumber'];
+	$transient_name = wp_get_current_user()->user_login . '-formpagenbr';
+	
+	if( get_transient( $transient_name ) ){
+		
+		$cookieVal = get_transient( $transient_name );
 		if($cookieVal > 0){
 			$cookieVal = $cookieVal - 1;
-			setcookie('qform_pagenumber', $cookieVal, time() + 3600, '/');
+			set_transient( $transient_name, $cookieVal);
 			echo '1';
 		}
 		else{
