@@ -40,7 +40,6 @@ function giveCompanyCookie(CID){
         'cont' : CID
       },
       success : function( response ) {
-              console.log(response);
               window.location.href = response;
       }
 		});

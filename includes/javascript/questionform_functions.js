@@ -48,7 +48,6 @@ jQuery(document).ready(function(event) {
           'cont' : testData
         },
         success : function( response ) {
-            console.log(response);
             // This redirects the page
             window.location.href = newpage;
         }
@@ -69,11 +68,9 @@ jQuery(document).ready(function(event) {
         url : questionFormFunctions.ajax_url,
         type : 'POST',
         data : {
-          'action' : activefunction,
-          'cont' : testData
+          'action' : activefunction
         },
         success : function( response ) {
-            console.log(response);
             // This redirects the page
             location.reload();
         }
