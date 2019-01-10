@@ -1,4 +1,5 @@
 jQuery(document).ready(function(event) {
+	//TODO Check whether the page is correct
 	jQuery('.questionForm').submit(testSubmit);
 
 	/*
@@ -60,9 +61,23 @@ jQuery(document).ready(function(event) {
 	 */
 
 	jQuery('#back_button').click(function(e){
-		var newpage = window.location.protocol + "//" + window.location.hostname + "/questionform";
-		// This redirects the page
-		window.location.href = newpage;
+		
+		var activefunction = "back_button_function";
+		
+		jQuery.ajax({
+
+        url : questionFormFunctions.ajax_url,
+        type : 'POST',
+        data : {
+          'action' : activefunction,
+          'cont' : testData
+        },
+        success : function( response ) {
+            console.log(response);
+            // This redirects the page
+            location.reload();
+        }
+          });
 	});
 	jQuery('#end_button').click(function(e){
 		var newpage = window.location.protocol + "//" + window.location.hostname + "/any_splash";
