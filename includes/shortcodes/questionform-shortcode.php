@@ -87,6 +87,7 @@ function school_questions( $results, $pagenbr, $maxpages ) {
 function company_questions( $results, $pagenbr, $maxpages  ) {
   global $wpdb;
   $qst_nmbr = 1;
+  $transient_name = wp_get_current_user()->user_login . '-formpagenbr';
 	$link = home_url( '/questionform', 'https' );
 
   if ( $pagenbr == 0 ) {
@@ -97,6 +98,8 @@ function company_questions( $results, $pagenbr, $maxpages  ) {
       echo '<p><b>Minimiarvolla</b> kysymys ei tuota pisteitä yhteensopivuuslaskelmiin.<br><b>Hyväksyttävä arvo</b> tuottaa osan pisteistä yhteensopivuuslaskelmiin.<br><b>Toivottu arvo</b> tuottaa täydet pisteet yhteensopivuuslaskelmiin';
       echo '<p>Seuraava vierityspalkki on pienempi. Sen avulla voitte määrittää kuinka tärkeä kyseinen kysymys on teidän tuotteellenne. Mitä tärkeämpi se on, sitä enemmän kyseinen kysymys vaikuittaa yhteensopivuuslaskelmiin.</p>';
       echo '<input type="button" onclick="location.href=\'' . $link . '\';" value="Kysymyksiin" />';
+
+      set_transient( $transient_name, $pagenbr + 1 );
   } else {
     if ( intval($pagenbr) <= intval($maxpages) ) {
         echo 'Kysymykset ' . $pagenbr . '/' . $maxpages . '';
