@@ -2,7 +2,6 @@ jQuery( document ).ready(function($) {
 	/*
 	 * This function lists the companies that have answered the questionaire and outputs them to a element with id="company_list"
 	 */
-console.log('pootis');
 	// Checks wheter the element exists
   if ( $("#company_list").length ) {
 
@@ -30,7 +29,7 @@ function giveCompanyCookie(CID){
 	var pagepath = window.location.protocol;
 	pagepath = pagepath + "//" + window.location.hostname + "/questionform";
 
-	console.log(pagepath);
+
 	jQuery.ajax({
 
       url : company_lister.ajax_url,

@@ -1,10 +1,10 @@
 <?php
 /**
 Plugin Name: Pilot Configurator
-Plugin URI:
+Plugin URI: https://inno-oppiva.uta.fi/
 Description: Pilot Configurator for providing matchmaking in the Inno-Oppiva project
-Author: Mikko Ala-Fossi
-Version: 0.0.1
+Author: Pilot Configurator Team
+Version: 1.0.0
 Text Domain: pilot-configurator
 
 -----------------
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   * Define plugin settings as PHP globals.
   */
 define( 'PILOT_CONFIGURATOR_DIR_PATH', plugin_dir_path( __FILE__ ) );
-define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '0.0.1' );
+define( 'PILOT_CONFIGURATOR_PLUGIN_VERSION', '1.0.0' );
 
 /**
   * Require plugin files.
