@@ -74,7 +74,7 @@ function school_question_insert() {
       }
     }
   }
-
+  pkfg_advance();
 	die();
 }
 
@@ -112,14 +112,25 @@ function company_question_insert() {
       }
     }
   }
+  pkfg_advance();
 	die();
 }
+
+function pkfg_advance() {
+  $transient_name = wp_get_current_user()->user_login . '-formpagenbr';
+  if( get_transient( $transient_name ) ){
+    $cookieVal = get_transient( $transient_name );
+    $cookieVal = $cookieVal +1 ;
+    set_transient( $transient_name, $cookieVal);
+  }
+}
+
 function back_button_function(){
-	
+
 	$transient_name = wp_get_current_user()->user_login . '-formpagenbr';
-	
+
 	if( get_transient( $transient_name ) ){
-		
+
 		$cookieVal = get_transient( $transient_name );
 		if($cookieVal > 0){
 			$cookieVal = $cookieVal - 1;
@@ -133,5 +144,5 @@ function back_button_function(){
 	else{
 		echo '0';
 	}
-	
+
 }
