@@ -23,6 +23,15 @@ jQuery(document).ready(function($){
 		});
 		
 	});   
-	
+	function evalJSFromHtml(html) {
+  var newElement = document.createElement('div');
+  newElement.innerHTML = html;
+
+  var scripts = newElement.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; ++i) {
+    var script = scripts[i];
+    eval(script.innerHTML);
+  }
+}
 	
 });
