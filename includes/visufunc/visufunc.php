@@ -16,8 +16,11 @@ function printradarchart() {
 	global $wpdb;
 	$cid = $_POST['cid'];
 	$sid = $_POST['sid'];
-	//Echossa pitäisi olla chartti, mutta tulosta ei tule, tulostaa vain numerot.
-	echo 111;
+	//Heatmap ja per question toimii, mutta radar ei näy ajax kutsun kautta
+	echo showresulttest2((int)$cid, (int)$sid);
+	echo heatprint((int)$cid, (int)$sid);
+
+	echo radarchart((int)$cid, (int)$sid);
 }
 
 function printeach() {

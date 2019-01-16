@@ -92,7 +92,11 @@ get_header(); ?>
 			
 			
 					<details class = "results" data-cid="'.$company_id.'" data-sid="'.$school_id.'"><summary>' . $school_name . ' ' . $match . '%</summary>
-                  <span id="' . $school_id . '"></span></details>';
+                  <span id="' . $school_id . '"></span>
+				  
+				  
+				  
+				  </details>';
             }
          }
          $company_view_content = ob_get_contents(); 
