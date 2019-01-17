@@ -43,6 +43,8 @@ get_header(); ?>
     $question_count = 23;
     $page_content = '';
 
+    include_once PILOT_CONFIGURATOR_DIR_PATH . 'includes/visufunc/visufunc.php';
+
     // Check which type of result page to print
     if ( isset($school_id) ) {
       // Make school's result page
@@ -157,4 +159,3 @@ get_header(); ?>
 
 <?php
 get_footer();
-

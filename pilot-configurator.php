@@ -53,7 +53,6 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'lib/helpers-ajax.php';
 add_shortcode( 'pilotcfg_any_splash', 'pilotcfg_any_splash' );
 add_shortcode( 'pilotcfg_questionform', 'pilotcfg_questionform' );
 
-require (dirname(__FILE__) . '/includes/pages/create-product-information.php');
 require (dirname(__FILE__) . '/includes/visufunc/createresultpage.php');
 
 
@@ -139,7 +138,7 @@ function ajax_test_enqueue_scripts() {
 	 wp_enqueue_script('chart');
 	 wp_enqueue_script('chart2');
 	 wp_enqueue_script('heatmap', 'https://cdn.plot.ly/plotly-latest.min.js', array(),  true);
-	 
+
 	  wp_enqueue_script( 'visuajax', plugins_url( 'includes/templates/visuajax.js', __FILE__ ), array('jquery'), '1.0', true );
 	wp_localize_script( 'visuajax', 'visuAjax', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
