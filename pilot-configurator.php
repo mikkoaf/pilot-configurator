@@ -130,9 +130,9 @@ function ajax_test_enqueue_scripts() {
 //Add scripts for visualising
  function wpb_adding_scripts() {
 	 	 wp_enqueue_script('jquery');
-	 wp_register_script('chart', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.js', false);
-	 wp_register_script('chart2', plugin_dir_url(__FILE__) . '/includes/visufunc/Chart.min.js', false);
-	  wp_register_script('ajaxy', plugin_dir_url(__FILE__) . '/includes/javascripts/visuajax.js',  array('jquery'), false);
+	 wp_register_script('chart', plugin_dir_url(__FILE__) . 'includes/javascript/Chart.js', false);
+	 wp_register_script('chart2', plugin_dir_url(__FILE__) . 'includes/javascript/Chart.min.js', false);
+	  wp_register_script('ajaxy', plugin_dir_url(__FILE__) . 'includes/javascript/visuajax.js',  array('jquery'), false);
 	  	 wp_enqueue_script('ajaxy');
 	 wp_enqueue_script('chart');
 	 wp_enqueue_script('chart2');

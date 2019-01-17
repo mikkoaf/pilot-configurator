@@ -88,10 +88,12 @@ get_header(); ?>
           $company_name = get_user_by('id', $company_id)->user_nicename;
 
           $match = match_alg($query_result_organized[ $company_id ]);
-          echo '<details><summary>' . $company_name . ' ' . $match . '%</summary> .
-                  <span id=company_' . $company_id . '>'
-                   . var_dump($query_result_organized[ $company_id]) .
-                  '</span></details>';
+          echo '<details class="results" data-sid='.$school_id.' data-cid='.$company_id.'><summary>' . $company_name . ' ' . $match . '%</summary>
+                  <span id="company_' . $company_id . '" data-query='
+                   . json_encode($query_result_organized[ $company_id]) .
+                  '>
+                    <canvas id="marksChartcompany_' . $company_id . '" class="marksChart"></canvas>
+                  </span></details>';
         }
       }
        $page_content = ob_get_contents();
@@ -140,10 +142,10 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $school_id ]);
           echo '<details><summary>' . $school_name . ' ' . $match . '%</summary> .
-                  <span id=school_' . $school_id . '>'
+                  <span id="school_' . $school_id . '" data-query="'
                   . var_dump($query_result_organized[ $school_id ]) .
 
-                  '</span></details>';
+                  '""></span></details>';
         }
       }
        $page_content = ob_get_contents();
