@@ -93,6 +93,7 @@ get_header(); ?>
                    . json_encode($query_result_organized[ $company_id]) .
                   '>
                     <canvas id="marksChartcompany_' . $company_id . '" class="marksChart"></canvas>
+                    <div style="width: 600px; height: 800px;" id="graph' . $company_id . '+' . $school_id . '"></div>
                   </span></details>';
         }
       }
