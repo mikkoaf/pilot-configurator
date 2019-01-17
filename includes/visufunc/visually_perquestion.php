@@ -2,26 +2,16 @@
 
 function printPerQ($sqls, $sqlc, $cid, $sid) {
 
-//$svar1 = "SELECT school_answer_value FROM '$table' WHERE keygen=2";
-//$svar2 = "SELECT school_answer_value FROM '$table' WHERE keygen=2";
-//$svar3 = "SELECT school_answer_value FROM '$table' WHERE keygen=3";
-//$svar4 = "SELECT school_answer_value FROM '$table' WHERE keygen=4";
-//$svar5 = "SELECT school_answer_value FROM '$table' WHERE keygen=5";
-//$cvar1 = (int)$table[0]->company_answer_value;
-//$cvar2 = "SELECT company_answer_value FROM '$table' WHERE keygen=2";
-//$cvar3 = "SELECT company_answer_value FROM '$table' WHERE keygen=3";
-//$cvar4 = "SELECT company_answer_value FROM '$table' WHERE keygen=4";
-//$cvar5 = "SELECT company_answer_value FROM '$table' WHERE keygen=5";
 $counter = 0;
 
 
 	echo '<div style="width: 600px; height: 800px;" id="graph' . json_encode($cid) . '+' . json_encode($sid) . '"></div>
 <script>
     Plotly.plot("graph' . json_encode($cid) . '+' . json_encode($sid) . '", [{
-	displayModeBar: false,	
+	displayModeBar: false,
   type: "bar",
   name: "haluttu",
-  x:	[' . json_encode((int)$sqlc[0]->answer_max - $sqlc[0]->answer_min) . '+0.1, 
+  x:	[' . json_encode((int)$sqlc[0]->answer_max - $sqlc[0]->answer_min) . '+0.1,
 		' . json_encode((int)$sqlc[1]->answer_max - $sqlc[1]->answer_min) . '+0.1,
 		' . json_encode((int)$sqlc[2]->answer_max - $sqlc[1]->answer_min) . '+0.1,
 		' . json_encode((int)$sqlc[3]->answer_max - $sqlc[1]->answer_min) . '+0.1,
@@ -44,7 +34,7 @@ $counter = 0;
 		' . json_encode((int)$sqlc[20]->answer_max - $sqlc[1]->answer_min) . '+0.1,
 		' . json_encode((int)$sqlc[21]->answer_max - $sqlc[1]->answer_min) . '+0.1,
 		' . json_encode((int)$sqlc[22]->answer_max - $sqlc[1]->answer_min) . '+0.1],
-  base:	[' . json_encode((int)$sqlc[0]->answer_min) . '-0.05, 
+  base:	[' . json_encode((int)$sqlc[0]->answer_min) . '-0.05,
 		' . json_encode((int)$sqlc[1]->answer_min) . '-0.05,
 		' . json_encode((int)$sqlc[2]->answer_min) . '-0.05,
 		' . json_encode((int)$sqlc[3]->answer_min) . '-0.05,
@@ -222,7 +212,7 @@ $counter = 0;
   yaxis: {
     autorange: "reversed"
   }
-}, {displayModeBar: false})                             
+}, {displayModeBar: false})
 </script>';
 	$counter = $counter + 1;
 }
