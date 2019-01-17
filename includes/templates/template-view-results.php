@@ -89,9 +89,9 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $company_id ]);
           echo '<details><summary>' . $company_name . ' ' . $match . '%</summary> .
-                  <span id=company_' . $company_id . '>
-                    <div style="width: 600px; height: 800px;" id="graph' . $company_id . '+' . $school_id . '"></div>
-                  </span></details>';
+                  <span id=company_' . $company_id . '>'
+                   . var_dump($query_result_organized[ $company_id]) .
+                  '</span></details>';
         }
       }
        $page_content = ob_get_contents();
@@ -140,10 +140,10 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $school_id ]);
           echo '<details><summary>' . $school_name . ' ' . $match . '%</summary> .
-                  <span id=school_' . $school_id . '>
-                  <div style="width: 600px; height: 800px;" id="graph' . $company_id . '+' . $school_id . '"></div>
+                  <span id=school_' . $school_id . '>'
+                  . var_dump($query_result_organized[ $school_id ]) .
 
-                  </span></details>';
+                  '</span></details>';
         }
       }
        $page_content = ob_get_contents();
