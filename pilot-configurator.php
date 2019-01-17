@@ -39,7 +39,7 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-inno-oppiva-login.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/inno-user-roles.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/match-algorithm.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/class-page-templater.php';
-require PILOT_CONFIGURATOR_DIR_PATH . 'includes/visufunc/visufunc.php';
+
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/company-view.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/create-product-information.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/splashes.php';
@@ -47,14 +47,13 @@ require PILOT_CONFIGURATOR_DIR_PATH . 'includes/pages/questionforms.php';
 
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/shortcodes/splash-screen-shortcode.php';
 require PILOT_CONFIGURATOR_DIR_PATH . 'includes/shortcodes/questionform-shortcode.php';
+require PILOT_CONFIGURATOR_DIR_PATH . 'includes/shortcodes/visualization-shortcode.php';
 
 require PILOT_CONFIGURATOR_DIR_PATH . 'lib/helpers-ajax.php';
 
 add_shortcode( 'pilotcfg_any_splash', 'pilotcfg_any_splash' );
 add_shortcode( 'pilotcfg_questionform', 'pilotcfg_questionform' );
-
-require (dirname(__FILE__) . '/includes/visufunc/createresultpage.php');
-
+add_shortcode( 'pilotcfg_visualization', 'pilotcfg_visualization' );
 
 register_activation_hook (__FILE__, 'add_inno_user_roles');
 register_deactivation_hook (__FILE__, 'remove_inno_user_roles');

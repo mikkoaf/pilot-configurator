@@ -1,5 +1,16 @@
 <?php
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+  die( 'Access Denied!' );
+}
+
+/*
+ Prints all visualizations
+*/
+function pilotcfg_visualization() {
+
+}
 
 /*
 * Prints charts gfrom other php-files.
@@ -38,7 +49,7 @@ function showResults($sid, $cid) {
 	$sqls = $wpdb->get_results("SELECT * FROM wp_School_answer WHERE school_id=$school_id AND company_id=$company_id");
 	$sqls = $wpdb->get_results("SELECT * FROM wp_Company_answer WHERE company_id=$company_id");
 	printCharts(4, $sql);
-	
+
 	$x = 0;
 	//Create array of school answer values
 	foreach($sql as $schoolArray){
@@ -48,7 +59,7 @@ function showResults($sid, $cid) {
 	foreach($sql as $companyArray){
 		$companyData[] = (int)$companyArray->company_answer_value;
 	}
-	
+
 	printCharts(4, $schoolData, $companyData);
 
 }
@@ -83,7 +94,7 @@ function radartester() {
 	$sqls = $wpdb->get_results("SELECT answer_val, question_id FROM wp_School_answer WHERE school_id=$sid AND company_id=$cid");
 	$sqlc = $wpdb->get_results("SELECT answer_min, answer_max, question_id, answer_priority FROM wp_Company_answer WHERE company_id=$cid");
 
-	$wp_query_result = $wpdb->get_results( 
+	$wp_query_result = $wpdb->get_results(
 		"SELECT DISTINCT wp_School_answer.answer_val as answer, answer_max, answer_min, wp_Company_answer.answer_priority, wp_School_answer.question_id
 		FROM wp_Company_answer, wp_School_answer
 		WHERE wp_Company_answer.company_id=$cid
@@ -92,23 +103,23 @@ function radartester() {
 			AND wp_School_answer.company_id=$cid
 			AND wp_Company_answer.question_id<6
 		ORDER BY question_id ASC");
-	
-	
+
+
 	$category1 = match_alg($wp_query_result);
 	echo $category1;
-	
+
 }
 //Test numbers for radarchart
 function radarchart ($cid, $sid) {
 	include_once 'visually_radarchart3.php';
 	global $wpdb;
-	
+
 	$category1 = getdb(1, $cid, $sid);
 	$category2 = getdb(2, $cid, $sid);
 	$category3 = getdb(3, $cid, $sid);
 	$category4 = getdb(4, $cid, $sid);
 	$category5 = getdb(5, $cid, $sid);
-	
+
 	echo printRadar($category1, $category2, $category3, $category4, $category5, $cid, $sid);
 }
 
@@ -138,8 +149,8 @@ function getdb($cat, $cid, $sid) {
 		$qidmin = 21;
 		$qidmax = 23;
 	}
-	
-	$wp_query_result = $wpdb->get_results( 
+
+	$wp_query_result = $wpdb->get_results(
 		"SELECT DISTINCT wp_School_answer.answer_val as answer, answer_max, answer_min, wp_Company_answer.answer_priority, wp_School_answer.question_id
 		FROM wp_Company_answer, wp_School_answer
 		WHERE wp_Company_answer.company_id=$cid
@@ -149,7 +160,7 @@ function getdb($cat, $cid, $sid) {
 			AND wp_School_answer.school_id=$sid
 			AND wp_School_answer.company_id=$cid
 		ORDER BY question_id ASC");
-		
+
 		return match_alg($wp_query_result);
 
 }
@@ -160,7 +171,7 @@ function printCharts($chart, $sqls, $sqlc, $cid, $sid) {
 	include_once 'visually_radarchart.php';
 	include_once 'visually_perquestion.php';
 
-	
+
 	if ($chart == 1) {
 		echo printBar(41, 10, 15, 16, 40);
 	}
@@ -173,6 +184,6 @@ function printCharts($chart, $sqls, $sqlc, $cid, $sid) {
 	elseif ($chart == 4) {
 		echo printPerQ($sqls, $sqlc, $cid, $sid);
 	}
-	
+
 }
 ?>

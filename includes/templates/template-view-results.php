@@ -43,7 +43,7 @@ get_header(); ?>
     $question_count = 23;
     $page_content = '';
 
-    include_once PILOT_CONFIGURATOR_DIR_PATH . 'includes/visufunc/visufunc.php';
+
 
     // Check which type of result page to print
     if ( isset($school_id) ) {
@@ -89,7 +89,9 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $company_id ]);
           echo '<details><summary>' . $company_name . ' ' . $match . '%</summary> .
-                  <span id=company_' . $company_id . '><p>hey</p></span></details>';
+                  <span id=company_' . $company_id . '>
+                    <div style="width: 600px; height: 800px;" id="graph' . $company_id . '+' . $school_id . '"></div>
+                  </span></details>';
         }
       }
        $page_content = ob_get_contents();
@@ -138,7 +140,10 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $school_id ]);
           echo '<details><summary>' . $school_name . ' ' . $match . '%</summary> .
-                  <span id=school_' . $school_id . '><p>hey</p></span></details>';
+                  <span id=school_' . $school_id . '>
+                  <div style="width: 600px; height: 800px;" id="graph' . $company_id . '+' . $school_id . '"></div>
+
+                  </span></details>';
         }
       }
        $page_content = ob_get_contents();
