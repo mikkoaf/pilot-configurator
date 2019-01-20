@@ -17,9 +17,15 @@ function list_active_companies() {
 	$test .= '<ul>';
   foreach ( $companies as $single ) {
       $id = $single->company_id;
-      $company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users WHERE ID = $single->company_id");
-      $test .= '<li><a href="#" onclick="return giveCompanyCookie(' . $id . ')"> ' . $company_name . '</a></li>';
-      $test .= "\r\n";
+      // Check if the user is actually a company
+      $user = get_userdata( $id );
+      $user_roles = $user->roles;
+      if ( in_array( 'company', $user_roles, true ) ) {
+        $company_name = $wpdb->get_var("SELECT user_nicename FROM wp_users INNER JOIN wp_usermeta WHERE ID = $single->company_id");
+        $test .= '<li><a href="#" onclick="return giveCompanyCookie(' . $id . ')"> ' . $company_name . '</a></li>';
+        $test .= "\r\n";
+      }
+
   }
 	$test .= '</ul>';
 	echo $test;
