@@ -18,7 +18,7 @@ get_header(); ?>
 
     <?php
     global $wpdb;
-
+    $rand = rand();
     // Check user
     if ( current_user_can( 'administrator' ) ) {
       if ( isset( $_POST['company_view_for_admin'] ) ) {
@@ -87,7 +87,10 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $company_id ]);
           echo '<details><summary>' . $company_name . ' ' . $match . '%</summary> .
-                  <span id=company_' . $company_id . '><p>hey</p></span></details>';
+                  <span id=company_' . $company_id . '>';
+                    pilot_visualize($query_result_organized[ $company_id ]);
+          echo    '</span>
+                </details>';
         }
       }
        $page_content = ob_get_contents();
@@ -136,7 +139,10 @@ get_header(); ?>
 
           $match = match_alg($query_result_organized[ $school_id ]);
           echo '<details><summary>' . $school_name . ' ' . $match . '%</summary> .
-                  <span id=school_' . $school_id . '><p>hey</p></span></details>';
+                  <span id=school_' . $school_id . '>';
+          pilot_visualize($query_result_organized[ $school_id ]);
+          echo '</span>
+                </details>';
         }
       }
        $page_content = ob_get_contents();
@@ -157,4 +163,3 @@ get_header(); ?>
 
 <?php
 get_footer();
-

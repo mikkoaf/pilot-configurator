@@ -121,7 +121,47 @@ function ajax_test_enqueue_scripts() {
       'ajax_url' => admin_url( 'admin-ajax.php' ),
 	));
 
+
+  wp_enqueue_script( 'plotly', plugins_url( 'includes/javascript/plotly-latest.min.js', __FILE__ ), array( 'jquery' ));
+  wp_enqueue_script( 'chart', plugins_url( 'includes/javascript/Chart.min.js', __FILE__ ), array( 'jquery' ));
+  wp_enqueue_script( 'pilot_chart', plugins_url( 'includes/javascript/pilotti-Chart.js', __FILE__), array( 'jquery'));
+  wp_enqueue_script( 'heatmap', plugins_url( 'includes/javascript/heatmap.js', __FILE__ ), array( 'jquery' ));
+  wp_enqueue_script( 'data_driven_docs', "https://d3js.org/d3.v3.min.js", array( 'jquery' ));
+  wp_enqueue_script( 'radarChart', plugins_url( 'includes/javascript/radarChart.js', __FILE__ ), array( 'jquery' ));
+  wp_enqueue_script( 'pilot_Radar', plugins_url( 'includes/javascript/pilotti-radarChart.js', __FILE__ ), array( 'jquery' ));
+
+
+
 }
+
+add_action( 'rest_api_init', 'register_rest_pilot_routes');
+
+
+function register_rest_pilot_routes () {
+  register_rest_route( 'pilotconf/v1', '/questions', array(
+    'methods' => 'GET',
+    'callback' => 'pilotconf_questions',
+  ) );
+  register_rest_route( 'pilotconf/v1', '/question_sets', array(
+    'methods' => 'GET',
+    'callback' => 'pilotconf_question_sets',
+  ) );
+}
+
+
+
+function pilotconf_question_sets( $request ) {
+  global $wpdb;
+  $return_data = $wpdb->get_results('SELECT DISTINCT theme FROM wp_Questions');
+  wp_send_json($return_data);
+}
+
+function pilotconf_questions( $request ) {
+  global $wpdb;
+  $return_data = $wpdb->get_results("SELECT question FROM wp_Questions;");
+  wp_send_json($return_data);
+}
+
 
 function page_templater_init() {
 	$page_templater = new Inno_Oppiva\Page_Templater();

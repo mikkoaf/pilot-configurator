@@ -152,3 +152,70 @@ function back_button_function(){
 	}
 
 }
+
+function pilot_visualize( $data_array ) {
+  // Old visualization methods
+  $form = [4,4,2,4,4];
+  $hard_form = $form;
+  $current_set = array_shift($form);
+  $prio = array_column($data_array, 'answer_priority');    // questions priority to the company
+  $min = array_column($data_array, 'answer_min');      // minimium value to get any points
+  $max = array_column($data_array, 'answer_max');      // "maximium" value, get max points after this
+  $answ = array_column($data_array, 'answer');         // school's answer
+
+  $length = count($data_array);       // can be smaller than question count
+  $priority = get_option('inno_oppiva_priorities');
+
+  $points = 0;                 // counts how well school's answers are valued by the company
+  $points_max = 0;             // counts how many points a perfect set of answers would get
+  for ( $i = 0; $i < $length; $i++ ) {
+      $points_max += $priority[ $prio[ $i ] ];
+  }
+  $temp = [];
+  $ret_arr = [];
+  for ( $i = 0; $i < $length; $i++ ) {
+    if ( $answ[ $i ] >= $min[ $i ] ) {
+        // check if school deserves full points or not
+      if ( $answ[ $i ] >= $max[ $i ] ) {
+        // add full points for given question
+        array_push($temp, floatval($priority[ $prio[ $i ] ]));
+      } else {
+          // add some points, determined by how high school's answer was
+          array_push($temp, floatval(( $answ[ $i ] + 1 - $min[ $i ] ) / ( $max[ $i ] + 1 - $min[ $i ] ) * $priority[ $prio[ $i ] ]));
+      }
+    }
+    #ugly but works
+    if(count($form) >= 0 && $current_set >= 1){
+      $current_set = $current_set - 1;
+    } else {
+      # lisätään vertailuarvot taulukkoon
+      array_push($ret_arr, $temp);
+      $temp = [];
+      if(count($form)){
+          $current_set = array_shift($form);
+      }
+    }
+  }
+  $result = 0;
+  if ( $points_max != 0 ) {
+      $result = $points / $points_max * 100; // calculates the results in percents
+  }
+  $xValues =[];
+  for($i = 0; $i < count($max); $i++){
+    array_push($xValues, $max[$i]-$min[$i]);
+  }
+
+  $sAnswers = json_encode($answ);
+  $baseValues = json_encode($min);
+  $xValues = json_encode($xValues);
+  $ret_arr = json_encode($ret_arr);
+  $hard_form = json_encode($hard_form);
+  $rand = rand();
+  #Esitetään käyttäjälle useampi eri visualisointi.
+  echo
+    "<div class='pilotchart' id='pilotchart-$rand' data-carr-min='$baseValues' data-xValues='$xValues' data-sAnswers='$sAnswers'></div>
+    <div class='radarChart col-sm-offset-6' id='radar-$rand' data-matrix='$ret_arr' data-form='$hard_form'></div>
+      <details><summary>Vastausten yhteneväisyys</summary>
+      <div class='heatmap' id='heatmap-$rand' data-matrix='$ret_arr'></div>
+      </details>";
+}
