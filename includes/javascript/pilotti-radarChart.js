@@ -80,7 +80,6 @@ jQuery( document ).ready(function($) {
                 roundStrokes: true,
                 color: color
             };
-            console.log(arrayMax(values));
 
             //////////////////////////////////////////////////////////////
             //////////////////// Draw the Chart //////////////////////////

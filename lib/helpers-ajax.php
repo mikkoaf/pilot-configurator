@@ -213,7 +213,7 @@ function pilot_visualize( $data_array ) {
   $rand = rand();
   #Esitetään käyttäjälle useampi eri visualisointi.
   echo
-    "<div class='pilotchart' id='pilotchart-$rand' data-carr-min='$baseValues' data-xValues='$xValues' data-sAnswers='$sAnswers'></div>
+    "<div style='width: 1000px; height: 800px;' class='pilotchart' id='pilotchart-$rand' data-carr-min='$baseValues' data-xValues='$xValues' data-sAnswers='$sAnswers'></div>
     <div class='radarChart col-sm-offset-6' id='radar-$rand' data-matrix='$ret_arr' data-form='$hard_form'></div>
       <details><summary>Vastausten yhteneväisyys</summary>
       <div class='heatmap' id='heatmap-$rand' data-matrix='$ret_arr'></div>

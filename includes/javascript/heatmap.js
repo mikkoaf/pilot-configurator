@@ -49,7 +49,6 @@ jQuery( document ).ready(function($) {
           var sets =  question_sets;
           var zValues = local_parser($(this).attr('data-matrix'));
           zValues.reverse();
-          console.log(zValues);
           /*
           *   tämä vastaamaan muuttuvien kysymysten määriä
           */
