@@ -50,7 +50,7 @@ jQuery( document ).ready(function($) {
           var i = 0;
           for (bit in questions){
               i++;
-              qTitles.push(i +". " +questions[bit].question);
+              qTitles.push("Kysymys " + i ); 
           }
 
           var pc_data = [];
@@ -65,7 +65,7 @@ jQuery( document ).ready(function($) {
                     y: qTitles,
                     marker: {color: markervals},
                     orientation: "h",
-                    offset: 0
+                    offset: 0,
                   }
                 );
                 var basevals = fillArray(0.05, 23);
@@ -80,14 +80,16 @@ jQuery( document ).ready(function($) {
                 y: qTitles,
                 marker: { color: markervals },
                 orientation: "h",
-                offset: 0
+                offset: 0,
               }
             );
 
-console.log(pc_data);
           Plotly.plot(me, pc_data,
           {	displayModeBar: false,
-            yaxis: { autorange: "reversed"}
+            yaxis: {
+              automargin: true,
+              autorange: "reversed",
+            }
           });
         });
 
