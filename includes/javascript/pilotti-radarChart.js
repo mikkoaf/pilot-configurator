@@ -6,25 +6,6 @@ function rm_empties(data){
     return temp;
 }
 
-function local_parser(data){
-
-    an_array =[]
-    // "[[1,2],[1,2],[1,2],[1,2],[1,2]]""
-    data = data.replace(/\[/g,"");
-    data = data.split(']');
-    data = rm_empties(data);
-    // rm empties
-    data.forEach(element => {
-        element = element.split(",");
-        element = rm_empties(element);
-        //rm empties
-        an_array.push(element);
-
-    });
-
-    // "1,2" , ",1,2" , ",1,2" , ",1,2" , ",1,2" , ""
-    return an_array;
-}
 
 /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
 
@@ -99,7 +80,7 @@ jQuery( document ).ready(function($) {
                 roundStrokes: true,
                 color: color
             };
-
+            console.log(arrayMax(values));
 
             //////////////////////////////////////////////////////////////
             //////////////////// Draw the Chart //////////////////////////

@@ -18,8 +18,11 @@ function local_parser(data){
     data.forEach(element => {
         element = element.split(",");
         element = rm_empties(element);
+        element = element.map(function(each_element){
+    return Math.round(each_element*100)/100;
+});
         //rm empties
-        an_array.push(element);
+        an_array.push( element);//
 
     });
 
@@ -46,7 +49,7 @@ jQuery( document ).ready(function($) {
           var sets =  question_sets;
           var zValues = local_parser($(this).attr('data-matrix'));
           zValues.reverse();
-
+          console.log(zValues);
           /*
           *   tämä vastaamaan muuttuvien kysymysten määriä
           */
