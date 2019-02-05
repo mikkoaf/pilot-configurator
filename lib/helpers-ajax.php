@@ -218,4 +218,5 @@ function pilot_visualize( $data_array ) {
       <details><summary>Vastausten yhteneväisyys</summary>
       <div class='heatmap' id='heatmap-$rand' data-matrix='$ret_arr'></div>
       </details>";
+
 }
