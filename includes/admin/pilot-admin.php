@@ -5,6 +5,54 @@ function pilot_admin_page_html() {
     return;
   }
   ?>
+	<script> 
+		jQuery(document).ready(function(event) {
+			jQuery('#compgen_button').click(function(e){
+						
+				var activefunction = "company_csv_gen";
+				
+				jQuery.ajax({
+
+					url : ajaxurl,
+					type : 'GET',
+					data : {
+					  'action' : activefunction
+					},
+					success : function( response ) {
+						var file_path = response;
+						var a = document.createElement('A');
+						a.href = file_path;
+						a.download = file_path.substr(file_path.lastIndexOf('/') + 1);
+						document.body.appendChild(a);
+						a.click();
+						document.body.removeChild(a);
+					}
+				});
+			});
+			jQuery('#schoolgen_button').click(function(e){
+						
+				var activefunction = "school_csv_gen";
+				
+				jQuery.ajax({
+
+					url : ajaxurl,
+					type : 'GET',
+					data : {
+					  'action' : activefunction
+					},
+					success : function( response ) {
+						var file_path = response;
+						var a = document.createElement('A');
+						a.href = file_path;
+						a.download = file_path.substr(file_path.lastIndexOf('/') + 1);
+						document.body.appendChild(a);
+						a.click();
+						document.body.removeChild(a);
+					}
+				});
+			});
+		});
+	</script>
   <div class="wrap">
     <h1>Ylläpitäjän työkalut</h1>
 
@@ -47,7 +95,15 @@ function pilot_admin_page_html() {
       </fieldset>
       <input type="submit" value="Koulun tuloksiin" >
     </form>
-
+	
+	<form name="csvgencomp">
+		<legend><h2>Lataa yhtiöiden .csv</h2></legend>
+		<input type="button" id="compgen_button" value="Lataa">
+	</form>
+	<form name="csvgenschool">
+		<legend><h2>Lataa koulujen .csv</h2></legend>
+		<input type="button" id="schoolgen_button" value="Lataa">
+	</form>
 
     <h1>Ylläpito asetukset</h1>
     <form action="options.php" method="post">
@@ -59,6 +115,7 @@ function pilot_admin_page_html() {
     </form>
   </div>
   <?php
+
 }
 
 function pilot_admin_page_settings_init() {
@@ -148,3 +205,64 @@ function pilot_admin_page_settings_init() {
   }
 
 }
+function company_csv_gen(){
+	  
+	  global $wpdb;
+	  
+	  $results = $wpdb->get_results(
+	  "SELECT us.user_nicename AS 'Yhtiön nimi', qu.question AS 'Kysymys', ca.answer_max AS 'Parhaan raja', ca.answer_min AS 'Toivottu raja', ca.answer_priority AS 'Kysymyksen prioriteetti'
+	   FROM wp_Company_answer AS ca
+	   LEFT OUTER JOIN wp_users AS us ON ca.company_id = us.ID
+	   INNER JOIN wp_Questions AS qu ON ca.question_id = qu.question_id;",ARRAY_A);
+	
+	  if (empty($results)) {
+		return;
+	  }
+
+	  $csv_output = '"'.implode('","',array_keys($results[0])).'"';
+
+	  foreach ($results as $row) {
+		$csv_output .= "\r\n".'"'.implode('","',$row).'"';
+	  }
+
+	  $file = "company_csv.csv";
+	  file_put_contents($file, $csv_output );
+	  header("Content-type: text/csv; charset=utf-8");
+	  header("Content-disposition: csv" . date("Y-m-d") . ".csv");
+	  header('Content-Disposition: attachment; filename="'. basename($file) .'";');
+
+	  echo $file;
+	  die();
+}
+function school_csv_gen(){
+	  
+	  global $wpdb;
+	  
+	  $results = $wpdb->get_results("SELECT us.user_nicename AS 'Koulun nimi', 
+		    (SELECT DISTINCT us.user_nicename FROM wp_School_answer AS sc INNER JOIN wp_users AS us ON sc.company_id = us.ID) AS 'Yhtiön nimi',
+		    qu.question AS 'Kysymys', sc.answer_val AS 'Vastaus'
+			FROM wp_School_answer AS sc
+			LEFT OUTER JOIN wp_users AS us ON sc.school_id = us.ID
+			INNER JOIN wp_Questions AS qu ON sc.question_id = qu.question_id
+			ORDER BY us.user_nicename;",ARRAY_A);
+	
+	  if (empty($results)) {
+		return;
+	  }
+
+	  $csv_output = '"'.implode('","',array_keys($results[0])).'"';
+
+	  foreach ($results as $row) {
+		$csv_output .= "\r\n".'"'.implode('","',$row).'"';
+	  }
+
+	  $file = "school_csv.csv";
+	  file_put_contents($file, $csv_output );
+	  header("Content-type: text/csv; charset=utf-8");
+	  header("Content-disposition: csv" . date("Y-m-d") . ".csv");
+	  header('Content-Disposition: attachment; filename="'. basename($file) .'";');
+
+	  echo $file;
+	  die();
+}
+?>
