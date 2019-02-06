@@ -210,7 +210,7 @@ function company_csv_gen(){
 	  global $wpdb;
 	  
 	  $results = $wpdb->get_results(
-	  "SELECT us.user_nicename AS 'Yhtiön nimi', qu.question AS 'Kysymys', ca.answer_max AS 'Parhaan raja', ca.answer_min AS 'Toivottu raja', ca.answer_priority AS 'Kysymyksen prioriteetti'
+	  "SELECT us.user_nicename AS 'Yhtiön nimi',ca.question_id AS 'Kysymyksen numero', qu.question AS 'Kysymys', ca.answer_max AS 'Parhaan raja', ca.answer_min AS 'Toivottu raja', ca.answer_priority AS 'Kysymyksen prioriteetti'
 	   FROM wp_Company_answer AS ca
 	   LEFT OUTER JOIN wp_users AS us ON ca.company_id = us.ID
 	   INNER JOIN wp_Questions AS qu ON ca.question_id = qu.question_id;",ARRAY_A);
@@ -238,13 +238,13 @@ function school_csv_gen(){
 	  
 	  global $wpdb;
 	  
-	  $results = $wpdb->get_results("SELECT us.user_nicename AS 'Koulun nimi', 
-		    (SELECT DISTINCT us.user_nicename FROM wp_School_answer AS sc INNER JOIN wp_users AS us ON sc.company_id = us.ID) AS 'Yhtiön nimi',
+	  $results = $wpdb->get_results("SELECT us.user_nicename AS 'Koulun nimi', us2.user_nicename  AS 'Yhtiön nimi', sc.question_id AS 'Kysymyksen numero',
 		    qu.question AS 'Kysymys', sc.answer_val AS 'Vastaus'
 			FROM wp_School_answer AS sc
 			LEFT OUTER JOIN wp_users AS us ON sc.school_id = us.ID
 			INNER JOIN wp_Questions AS qu ON sc.question_id = qu.question_id
-			ORDER BY us.user_nicename;",ARRAY_A);
+			INNER JOIN wp_users AS us2 ON sc.company_id = us2.ID
+			ORDER BY us.user_nicename, us2.user_nicename, sc.question_id;",ARRAY_A);
 	
 	  if (empty($results)) {
 		return;
