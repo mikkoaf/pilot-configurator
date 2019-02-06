@@ -213,7 +213,8 @@ function company_csv_gen(){
 	  "SELECT us.user_nicename AS 'Yhtiön nimi',ca.question_id AS 'Kysymyksen numero', qu.question AS 'Kysymys', ca.answer_max AS 'Parhaan raja', ca.answer_min AS 'Toivottu raja', ca.answer_priority AS 'Kysymyksen prioriteetti'
 	   FROM wp_Company_answer AS ca
 	   LEFT OUTER JOIN wp_users AS us ON ca.company_id = us.ID
-	   INNER JOIN wp_Questions AS qu ON ca.question_id = qu.question_id;",ARRAY_A);
+	   INNER JOIN wp_Questions AS qu ON ca.question_id = qu.question_id
+	   ORDER BY us.user_nicename, ca.question_id;",ARRAY_A);
 	
 	  if (empty($results)) {
 		return;
@@ -226,10 +227,10 @@ function company_csv_gen(){
 	  }
 
 	  $file = "company_csv.csv";
-	  file_put_contents($file, $csv_output );
 	  header("Content-type: text/csv; charset=utf-8");
 	  header("Content-disposition: csv" . date("Y-m-d") . ".csv");
 	  header('Content-Disposition: attachment; filename="'. basename($file) .'";');
+	  file_put_contents($file, "\xEF\xBB\xBF". $csv_output );
 
 	  echo $file;
 	  die();
@@ -257,10 +258,10 @@ function school_csv_gen(){
 	  }
 
 	  $file = "school_csv.csv";
-	  file_put_contents($file, $csv_output );
 	  header("Content-type: text/csv; charset=utf-8");
 	  header("Content-disposition: csv" . date("Y-m-d") . ".csv");
 	  header('Content-Disposition: attachment; filename="'. basename($file) .'";');
+	  file_put_contents($file, "\xEF\xBB\xBF". $csv_output );
 
 	  echo $file;
 	  die();
